@@ -23,5 +23,20 @@
           	console.log("number of ratings: " + response.items[i].volumeInfo.ratingsCount);
           }
         });
+
+
+ var queryURL = "https://www.googleapis.com/books/v1/volumes/Ue1WO79SxIIC";
+
+        // Creating an AJAX call for the specific movie button being clicked
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).done(function(response) {
+        
+          console.log(response);
+        
+      });
+
+      
          
    

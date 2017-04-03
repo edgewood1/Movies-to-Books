@@ -1,0 +1,32 @@
+body {
+	margin: 0 auto;
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+}
+
+.jumbotron {
+	text-align: center;
+	background-image: url(../images/bookbackground.jpg);
+	background-size: cover;
+}
+
+h1 {
+	text-shadow: 5px 2px 2px black;
+	color: #FFFD8D;
+	
+}
+
+.form-group {
+	margin-top: 20px;
+}
+
+#movieTitle {
+
+	font-family: "Special Elite", serif;
+}
+
+button {
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+	margin: 0 5px;
+}

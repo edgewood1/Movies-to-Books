@@ -1,75 +1,22 @@
-<<<<<<< HEAD
+
 
 	/* Trying out a gradient (example colors from the Drop.js website) */
-	background-image: linear-gradient(135deg, #fff5e7, #ffedfe);
-=======
-body {
 
-	margin: 0 auto;
-	font-family: "Special Elite", serif;
-	background-color: #2290BA;
-}
 
-.jumbotron {
-	text-align: center;
-	background-image: url(../images/bookbackground.jpg);
-	background-size: cover;
-}
 
-h1 {
-	text-shadow: 5px 2px 2px black;
-	color: #FFFD8D;	
-}
+ .jumbotron { 
+ 	/* Not stuck on any of these design ideas, just trying to test some things out */
+ 	
+ background-image: -webkit-linear-gradient(top left, #fff5e7, #ffedfe);
+ background-image: -o-linear-gradient(top left, #fff5e7, #ffedfe);
+ background-image: linear-gradient(to bottom right, #fff5e7, #ffedfe);
+ 	text-align: center;
+ 	background-color: transparent;
+ 	font-family: 'Monoton', cursive;
+ 	color: #5D4A66;
+ 	word-spacing: 10px;
+ }
 
-.form-group {
-	margin-top: 20px;
-}
 
-#movieTitle {
-	font-family: "Special Elite", serif;
-}
 
-button {
-	font-family: "Special Elite", serif;
-	background-color: #2290BA;
-	margin: 0 5px;
-}
-
-h2 {
-	text-align: center;
-	text-shadow: 5px 2px 2px black;
-	color: #FFFD8D;	
-}
-
-#bookDisplay {
-	margin-top: 25px;
-}
-
-#bookDisplay img {
-	margin: 0 auto;		
-	border: 2px #FFFD8D solid;
->>>>>>> e6aa840cfb07d31b8adbc4f95664df63247c7454
-}
-
-/* 	Trying out a gradient (example colors from the Drop.js website) */
-/* 	background-image: linear-gradient(135deg, #fff5e7, #ffedfe); */
-/* } */
-
-/* .jumbotron { */
-	/* Not stuck on any of these design ideas, just trying to test some things out */
-<<<<<<< HEAD
-	text-align: center;
-	background-color: transparent;
-	font-family: 'Monoton', cursive;
-	color: #5D4A66;
-	word-spacing: 10px;
-}
-=======
-/* 	text-align: center; */
-/* 	background-color: transparent; */
-/* 	font-family: 'Monoton', cursive; */
-/* 	color: #5D4A66; */
-/* 	word-spacing: 10px; */
-/* } 
->>>>>>> e6aa840cfb07d31b8adbc4f95664df63247c7454
 

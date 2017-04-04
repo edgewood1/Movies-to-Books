@@ -1,0 +1,86 @@
+body {
+
+	margin: 0 auto;
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+}
+
+h1 {
+	text-shadow: 5px 2px 2px black;
+	color: #FFFD8D;	
+}
+
+h2 {
+	text-align: center;
+	text-shadow: 5px 2px 2px black;
+	color: #FFFD8D;	
+	margin: 20px;
+}
+
+/* jumbotron */
+
+.jumbotron {
+	text-align: center;
+	background-image: url(../images/bookbackground.jpg);
+	background-size: cover;
+}
+
+.form-group {
+	margin-top: 20px;
+}
+
+#movieTitle {
+	font-family: "Special Elite", serif;
+}
+
+button {
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+	margin: 0 5px;
+	color: #FFFD8D;
+	opacity: .75;
+}
+
+button:hover {
+	opacity: 1;
+
+}
+
+#movieChosen {
+	background-color: #2290BA;
+	opacity: .75;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 20px 200px;
+	padding: 10px;
+}
+
+/* Recent Searches carousel */
+
+#recentSearches {
+	margin: 150px 10px 50px 10px;
+}
+
+#recentMovieDisplay img {
+	margin: 0 auto;		
+	border: 2px #FFFD8D solid;
+}
+
+/* Book Results display */
+
+#bookResults img {
+	border: 2px #FFFD8D solid;
+	margin: 5px;
+}
+
+/* footer - make it sticky! */
+
+footer {
+	background-color: #FFFD8D;
+	text-align: center;
+}
+
+footer p {
+	padding: 20px;
+	font-size: 12px;
+}

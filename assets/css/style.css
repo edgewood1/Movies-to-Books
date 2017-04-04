@@ -1,4 +1,5 @@
 body {
+
 	margin: 0 auto;
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
@@ -43,3 +44,17 @@ h2 {
 	margin: 0 auto;		
 	border: 2px #FFFD8D solid;
 }
+
+/* 	Trying out a gradient (example colors from the Drop.js website) */
+/* 	background-image: linear-gradient(135deg, #fff5e7, #ffedfe); */
+/* } */
+
+/* .jumbotron { */
+	/* Not stuck on any of these design ideas, just trying to test some things out */
+/* 	text-align: center; */
+/* 	background-color: transparent; */
+/* 	font-family: 'Monoton', cursive; */
+/* 	color: #5D4A66; */
+/* 	word-spacing: 10px; */
+/* } 
+

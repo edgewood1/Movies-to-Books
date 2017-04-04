@@ -3,24 +3,26 @@
 <html>
 
 <head>
-  <title>Movies / Books</title>
+<title>Movies / Books</title>
 
   <!-- Added a link to Bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <!-- Added a link to custom styles-->
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
   <!-- Added a link to Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|Monoton" rel="stylesheet">
 
 </head>
 
 <body>
-  <div class="container-fluid">
+<div class="container-fluid">
 
 <!-- HEADER -->
 
     <div class="jumbotron">
-      <h1>Movie / Books</h1>
+      <h1>Would You Like Some Books To Go With That Movie?</h1>
     </div>
 
 <!-- SEARCH BOX -->
@@ -29,13 +31,13 @@
       <div class="panel-heading">
         <h3 class="panel-title">Search Parameters</h3>
       </div>
-      <div class="panel-body">
+    <div class="panel-body">
 
-        <form>
-          <div class="form-group">
-            <label for="term">Search Term:</label>
+      <form>
+        <div class="form-group">
+          <label for="term">Search Term:</label>
             <input type="text" class="form-control" id="term" placeholder="Roosevelt">
-          </div>
+        </div>
           <!-- 
 <div class="form-group">
   <label for="records">Number of Records to Retrieve:</label>
@@ -57,7 +59,7 @@
  <!-- BUTTONS -->
 
           <p>
-            <button type="button" id="search" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+            <button type="button" id="search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Search</button>
             <button type="button" id="clear" class="btn btn-default">Clear Results</button>
           </p>
 

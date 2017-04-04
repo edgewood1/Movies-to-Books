@@ -1,13 +1,22 @@
-body {
-	/* Trying out a gradient (example colors from the Drop.js website) */
-	background-image: linear-gradient(135deg, #fff5e7, #ffedfe);
-}
 
-.jumbotron {
-	/* Not stuck on any of these design ideas, just trying to test some things out */
-	text-align: center;
-	background-color: transparent;
-	font-family: 'Monoton', cursive;
-	color: #5D4A66;
-	word-spacing: 10px;
-}
+
+	/* Trying out a gradient (example colors from the Drop.js website) */
+
+
+
+ .jumbotron { 
+ 	/* Not stuck on any of these design ideas, just trying to test some things out */
+ 	
+ background-image: -webkit-linear-gradient(top left, #fff5e7, #ffedfe);
+ background-image: -o-linear-gradient(top left, #fff5e7, #ffedfe);
+ background-image: linear-gradient(to bottom right, #fff5e7, #ffedfe);
+ 	text-align: center;
+ 	background-color: transparent;
+ 	font-family: 'Monoton', cursive;
+ 	color: #5D4A66;
+ 	word-spacing: 10px;
+ }
+
+
+
+

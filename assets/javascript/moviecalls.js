@@ -103,19 +103,19 @@ function restart() {
 //DISPLAY
 
             articleCounter++;
-            wellSection = $("<div>").addClass("container");
+            wellSection = $("<div>").addClass("container" ).attr("class", i);
             $("#results").append(wellSection);
-            wellSection = $("<div>").addClass("jumbotron");
+            wellSection = $("<div>").addClass("jumbotron" ).attr("class", i);
             $("#results").append(wellSection);
             var wellSection1 = $("<button>");
-            wellSection1.attr("type", "button").addClass("btn btn-primary").text(articleCounter);
+            wellSection1.attr("type", "button").addClass("btn btn-primary").attr("class", i).text(articleCounter);
             // wellSection.append(wellSection1);
             // wellSection1=$("<p>").append(data3.substring(0, 10));
             // wellSection.append(wellSection1);
             var wellSection2 = $("<p>").prepend(allMoviesObj.name.name + "<br>").append("  Release Date: " + allMoviesObj.name.releaseDate + "  Popularity: " + allMoviesObj.name.popularity + "% " + "  Vote Average: " + allMoviesObj.name.voteAverage + "  Vote Count: " + allMoviesObj.name.voteCount + "  Genres: " + allMoviesObj.name.genres);
 
-            var wellSection3 = $("<img>")
-            wellSection3.attr("src", allMoviesObj.name.posterPath);
+            var wellSection3 = $("<img>").on("click", next);
+            wellSection3.attr("src", allMoviesObj.name.posterPath).attr("id", i).addClass("image");
 
             // wellSection.append(wellSection1);
             // wellSection1=$("<a>").attr("href", data2).text(data2).append("<br><br>");
@@ -123,11 +123,25 @@ function restart() {
             wellSection.append(wellSection1);
             wellSection.append(wellSection2);
             wellSection.append(wellSection3);
-          } // closes if
+          } //for i
+           // closes for
+        function next() {
+    var imgClicked=$(this).attr("id");
+    console.log("wow");
+    $("#results").empty();
+  
+  // for (i=0;  i < data.results.length; i++) {
+   // empty()
+
+};
         }) //coses function (results)
 
     }); //closes function event
   });
+
+  // WAS HERE!!
+
+
 }; //restart
 
 restart();

@@ -43,15 +43,16 @@ button {
 
 button:hover {
 	opacity: 1;
-
 }
 
+/*not displayed until a movie is chosen*/
 #movieChosen {
 	background-color: #2290BA;
 	opacity: .75;
 	border: 2px solid black;
 	border-radius: 5px;
 	margin: 20px 200px;
+	display: none;
 }
 
 /* Book Results display */
@@ -61,15 +62,22 @@ button:hover {
 	margin: 5px;
 }
 
-#bookResults h5,h6 {	
+#bookResults h5,p {	
 	text-align: center;
 	position: relative;
-	text-align: center;
-	transition: all .2s ease-in-out;	
+	text-align: center;	
 }
 
 .hovereffect:hover img {
 	transform: scale(1.2);
+}
+
+.modal-header {
+	text-align: center;
+}
+
+.bookInfo {
+	text-align: left;
 }
 
 /* Recent Searches carousel */
@@ -84,7 +92,7 @@ button:hover {
 }
 
 
-/* footer - make it sticky! */
+/* footer */
 
 footer {
 	background-color: #FFFD8D;

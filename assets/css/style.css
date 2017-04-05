@@ -56,6 +56,7 @@ button:hover {
 }
 
 /* Book Results display */
+/*change to not displayed until movie is picked*/
 
 #bookResults img {
 	border: 2px #FFFD8D solid;

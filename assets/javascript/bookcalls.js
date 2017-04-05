@@ -2,7 +2,7 @@
 // movieSubject = "Animation";
 
 var bookSubject;
-var movieSubject = "TV Movie"; //for testing purposes- change this to be on click movie picked by user
+var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
 
 switch (movieSubject) {
   case "Action":
@@ -79,27 +79,26 @@ $.ajax({
 
 
   console.log(response);
-  //get categories only
+
   for (var i =0; i < 10; i++) {
     $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
     $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
     $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-    $("#book" + (i+1) + "Year").html(response.items[i].volumeInfo.publishedDate);
+    //get year out of published date
+    var pubDateString = response.items[i].volumeInfo.publishedDate;
+    var yearOnly = pubDateString.slice(0,4);
+
+    $("#book" + (i+1) + "Year").html(yearOnly);
     $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
     $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
     $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
     $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
 
-
     console.log(response.items[i].volumeInfo.categories);
     console.log(response.items[i].volumeInfo.averageRating);
     console.log(response.items[i].volumeInfo.ratingsCount);
-    console.log(response.items[i].volumeInfo.maturityRating);
-
   }
-  
- 
-  
+   
 });
 
 

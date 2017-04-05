@@ -54,17 +54,6 @@ button:hover {
 	margin: 20px 200px;
 }
 
-/* Recent Searches carousel */
-
-#recentSearches {
-	margin: 150px 10px 50px 10px;
-}
-
-#recentMovieDisplay img {
-	margin: 0 auto;		
-	border: 2px #FFFD8D solid;
-}
-
 /* Book Results display */
 
 #bookResults img {
@@ -72,20 +61,7 @@ button:hover {
 	margin: 5px;
 }
 
-/*position overlay but make invisible until hover*/
-.hovereffect .overlay {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 160px;
-	left: -1px;
-	opacity: 0;
-	transition: all 1s ease-in-out;
-	background-color: #2290BA;
-	padding: 5px;
-}
-
-.hovereffect h5,h6 {	
+#bookResults h5,h6 {	
 	text-align: center;
 	position: relative;
 	text-align: center;
@@ -96,10 +72,17 @@ button:hover {
 	transform: scale(1.2);
 }
 
-/*make overlay visible!*/
-.hovereffect:hover .overlay {
-	opacity: 1;
+/* Recent Searches carousel */
+
+#recentSearches {
+	margin: 20px;
 }
+
+#recentMovieDisplay img {
+	margin: 0 auto;		
+	border: 2px #FFFD8D solid;
+}
+
 
 /* footer - make it sticky! */
 

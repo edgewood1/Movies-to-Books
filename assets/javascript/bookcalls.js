@@ -19,6 +19,11 @@ $.ajax({
     console.log(response.items[i].volumeInfo.pageCount);
     console.log(response.items[i].volumeInfo.imageLinks.thumbnail);
     console.log(response.items[i].volumeInfo.previewLink);
+    console.log(response.items[i].volumeInfo.publishedDate);
+    console.log(response.items[i].volumeInfo.averageRating);
+    console.log(response.items[i].volumeInfo.ratingsCount);
+    console.log(response.items[i].volumeInfo.maturityRating);
+
   }
   
  

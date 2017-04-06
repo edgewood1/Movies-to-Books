@@ -121,3 +121,15 @@ html, body {
 	/* Pad bottom by footer height */
 	padding: 0px 0px 60px 0px;
 }
+
+/* Sticky footer styling! */
+#footer {
+	/* Must match margin-bottom in .wrapper CSS */
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	margin-top: 50px;
+	background-color: #FFFD8D;
+	text-align: center;
+	overflow: auto;
+	overflow-y: hidden;
+}

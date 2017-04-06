@@ -107,18 +107,6 @@ $.ajax({
 
 
 
-  //get categories only
-  for (var i =0; i < 40; i++) {
-
-
-    console.log(response.items[i].volumeInfo.categories);
-    console.log(response.items[i].volumeInfo.averageRating);
-    console.log(response.items[i].volumeInfo.ratingsCount);
-  }
-   
-});
-
-
 
  
       

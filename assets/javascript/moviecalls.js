@@ -7,6 +7,8 @@ var doubles=[];
   var name;
   var popularity;
   var posterPath;
+  var bookSubject;
+  var genreChosen;
   var release;
   var voteAverage;
   var voteCount;
@@ -35,7 +37,7 @@ function restart() {
 
   $("#submitMovie").on("click", function(event) {
     event.preventDefault();
-    $("#row1").empty();
+    // $("#row1").empty();
     var term = $("#movieTitle").val().trim();
 
 //AJAX VARIABLES
@@ -78,7 +80,7 @@ function restart() {
           data = response;
 
 //CREATE MOVIE OBJECTS
-            $("#row2").empty();
+            // $("#row2").empty();
           for (i = 0; i < data.results.length; i++) {
 
             movieObj["popularity"] = (data.results[i].popularity).toFixed(2);
@@ -98,34 +100,21 @@ function restart() {
               allMoviesObj["name"] = movieObj;
             }
             finalGenre = [];
+///// ---
 
-
-//*****HERE'S THE OBJECT THAT HOLDS ALL THE DATA - 
-            // console.log(allMoviesObj);
-
-
-//DISPLAY
-
-          
-            
-            // for (var k; k<doubles.length; k++) {
-            //   if (doubles[k]==allMoviesObj.name.name) {a=true;}
-            //   else {a=false;}
-            // }
-        // console.log(allMoviesObj.name.posterPath);
               if (!(allMoviesObj.name.posterPath=="https://image.tmdb.org/t/p/w92null")) {
                   articleCounter++;
          // var element2 = $("<div>").addClass("offset-md-1 col-md-2");
             var element2 = $("<div>").addClass("col-md-2");
             var element3 = $("<div>").addClass("hovereffect");
             
-            var element4 = $("<img>").attr({"data-toggle":"modal", "data-target":"#moreInfo1", "class":"img-thumbnail", "src": allMoviesObj.name.posterPath, "alt":"book cover", "id": allMoviesObj.name.name}).css("margin-left", "21%").on("click", next);
+            var element4 = $("<img>").attr({"class":"img-thumbnail", "src": allMoviesObj.name.posterPath, "alt":"book cover", "id": allMoviesObj.name.name}).css({"width":"90%"}).on("click", next);
             var element5 = $("<p>").text(allMoviesObj.name.name).css("text-align", "center");
             var element6 = $("<p>").text(allMoviesObj.name.releaseDate).css("text-align", "center");
             // doubles.push(allMoviesObj.name.name);
             // console.log(doubles);
 
-      $("#row1").append(element2);
+      $("#movieResults").append(element2);
             element2.append(element3);
             element2.append(element4);
             element2.append(element5);
@@ -136,14 +125,14 @@ function restart() {
         function next() {
     var imgClicked=$(this).attr("id");
     for (k=0; k<allMoviesObj.name.genres.length; k++){
-    var genreChosen=allMoviesObj.name.genres[k]
+    genreChosen=allMoviesObj.name.genres[k]
     console.log(genreChosen);
   }
     // for (var k=0; k<articleCounter; k++){
     //   if (imgClicked===allMoviesObj.name.posterPath)
     //     {var moviePicked=allMoviesObj.name.name;}
     //     console.log(moviePicked);
-      $("#row1").empty();
+      // $("#row1").empty();
 
       $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
       articleCounter=0;
@@ -156,9 +145,127 @@ function restart() {
     }); //closes function(response)1
   
 
-  // WAS HERE!!
+  
 }); //closes function event
 
+////////////////////////////insert book calls
+
+
+// I think we want this broken out like this so that the movieSubject is swapped for the bookSubject?
+// movieSubject = "Animation";
+
+// var bookSubject;
+
+// var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
+
+switch (genreChosen) {
+  case "Action":
+    bookSubject = "action"
+      break;
+  case "Adventure":
+    bookSubject = "adventure"
+      break;
+  case "Animation":
+    bookSubject = "comics||animation||graphic novel"
+      break;
+  case "Comedy":
+    bookSubject = "humor"
+      break;
+  case "Crime":
+    bookSubject = "crime"
+      break;
+  case "Documentary":
+    bookSubject = "history||biography||non-fiction"
+      break;
+  case "Drama":
+    bookSubject = "melodrama"
+      break;
+  case "Family":
+    bookSubject = "juvenile fiction"
+      break;
+  case "Fantasy":
+    bookSubject = "fantasy"
+      break;
+  case "History":
+    bookSubject = "history"
+      break;
+  case "Horror":
+    bookSubject = "horror"
+      break;
+  case "Music":
+    bookSubject = movieSubject;
+      break;
+  case "Mystery":
+    bookSubject = "mystery"
+      break;
+  case "Romance":
+    bookSubject = "romance"
+      break;
+  case "Science Fiction":
+    bookSubject = "science fiction"
+      break;
+  case "TV Movie":
+    bookSubject = "emotions"
+      break;
+  case "Thriller":
+    bookSubject = "thriller"
+      break;
+  case "War":
+    bookSubject = "war||fiction"
+      break;
+  case "Western":
+    bookSubject = "western"
+      break;
+  default:
+    bookSubject = movieSubject;
+}
+
+
+console.log(movieSubject);
+console.log(bookSubject);
+
+
+var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
+
+// Creating an AJAX call for the specific movie button being clicked
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).done(function(response) {
+  
+  console.log(response);
+
+  for (var i =0; i < 10; i++) {
+    $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+    $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+    $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+    //get year out of published date
+    var pubDateString = response.items[i].volumeInfo.publishedDate;
+    var yearOnly = pubDateString.slice(0,4);
+
+    $("#book" + (i+1) + "Year").html(yearOnly);
+    $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
+    $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
+    $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
+    $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+
+
+    console.log(response.items[i].volumeInfo.categories);
+    console.log(response.items[i].volumeInfo.averageRating);
+    console.log(response.items[i].volumeInfo.ratingsCount);
+  }
+   
+});  // ajax closes
+
+
+
+
+ 
+      
+         
+   
+
+//////////////////////////////close book calls
 }; //restart
 
 restart();

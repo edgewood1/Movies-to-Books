@@ -88,18 +88,24 @@ function restart() {
             movieObj["releaseDate"] = data.results[i].release_date;
             movieObj["voteAverage"] = data.results[i].vote_average;
             movieObj["voteCount"] = data.results[i].vote_count;
-            genres = data.results[i].genre_ids; // genres is an array with all genre ids.
-
+            genres = data.results[i].genre_ids; 
+            // genres is an array with genre ids for each movie
+            // console.log(genres);.
             
-            for (var j = 0; j < genres.length; j++) { //loop to translate genres
+            //loop to translate genres
+            for (var j = 0; j < genres.length; j++) { 
               
               genres[j] = genres[j].toString();
-              finalGenre.push(genreObj[genres[j]]); // placing genre values into final 
+              finalGenre.push(genreObj[genres[j]]); 
+              // placing genre values into final genres
               movieObj["genres"] = finalGenre;
               movieObj["name"] = data.results[i].title;
               allMoviesObj["name"] = movieObj;
             }
+            //finalGenre holds a string of 
             finalGenre = [];
+            console.log(finalGenre);
+
 ///// ---
 
               if (!(allMoviesObj.name.posterPath=="https://image.tmdb.org/t/p/w92null")) {

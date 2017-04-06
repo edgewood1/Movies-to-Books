@@ -78,7 +78,7 @@ function restart() {
           data = response;
 
 //CREATE MOVIE OBJECTS
-
+            $("#row2").empty();
           for (i = 0; i < data.results.length; i++) {
 
             movieObj["popularity"] = (data.results[i].popularity).toFixed(2);
@@ -144,6 +144,7 @@ function restart() {
     //     {var moviePicked=allMoviesObj.name.name;}
     //     console.log(moviePicked);
       $("#row1").empty();
+
       $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
       articleCounter=0;
     // } //closes for k

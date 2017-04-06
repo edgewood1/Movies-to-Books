@@ -4,7 +4,7 @@
 
 var bookSubject;
 
-var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
+var movieSubject = Action; //for testing purposes- change this to be on click movie picked by user
 
 switch (movieSubject) {
   case "Action":

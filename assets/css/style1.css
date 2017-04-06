@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
 
 	margin: 0 auto;
@@ -44,42 +43,33 @@ button {
 
 button:hover {
 	opacity: 1;
+
 }
 
-/*not displayed until a movie is chosen*/
 #movieChosen {
 	background-color: #2290BA;
 	opacity: .75;
 	border: 2px solid black;
 	border-radius: 5px;
 	margin: 20px 200px;
-	display: none;
 }
 
 /* Book Results display */
-/*change to not displayed until movie is picked*/
 
 #bookResults img {
 	border: 2px #FFFD8D solid;
 	margin: 5px;
 }
 
-#bookResults h5,p {	
+#bookResults h5,h6 {	
 	text-align: center;
 	position: relative;
-	text-align: center;	
+	text-align: center;
+	transition: all .2s ease-in-out;	
 }
 
 .hovereffect:hover img {
 	transform: scale(1.2);
-}
-
-.modal-header {
-	text-align: center;
-}
-
-.bookInfo {
-	text-align: left;
 }
 
 /* Recent Searches carousel */
@@ -94,7 +84,7 @@ button:hover {
 }
 
 
-/* footer */
+/* footer - make it sticky! */
 
 footer {
 	background-color: #FFFD8D;
@@ -133,27 +123,3 @@ html, body {
 	overflow: auto;
 	overflow-y: hidden;
 }
-=======
-
-
-	/* Trying out a gradient (example colors from the Drop.js website) */
-
-
-
- .jumbotron { 
- 	/* Not stuck on any of these design ideas, just trying to test some things out */
- 	
- background-image: -webkit-linear-gradient(top left, #fff5e7, #ffedfe);
- background-image: -o-linear-gradient(top left, #fff5e7, #ffedfe);
- background-image: linear-gradient(to bottom right, #fff5e7, #ffedfe);
- 	text-align: center;
- 	background-color: transparent;
- 	font-family: 'Monoton', cursive;
- 	color: #5D4A66;
- 	word-spacing: 10px;
- }
-
-
-
-
->>>>>>> upstream/master

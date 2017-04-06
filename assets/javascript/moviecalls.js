@@ -1,5 +1,4 @@
-function restart() {
-
+var doubles=[];
   var wellSection;
   var data;
   var url;
@@ -12,6 +11,17 @@ function restart() {
   var voteAverage;
   var voteCount;
   var releaseDate;
+  var a;
+  //OBJECT VARIABLES
+
+    var finalGenre = [];
+    var ge = [];
+    var genreObj = {};
+    var movieObj = {};
+    var allMoviesObj = {};
+
+function restart() {
+
 
 //clear button
 
@@ -23,10 +33,10 @@ function restart() {
 
   //search button
 
-  $("#search").on("click", function(event) {
+  $("#submitMovie").on("click", function(event) {
     event.preventDefault();
-    $("wellSection").empty();
-    var term = $("#term").val().trim();
+    $("#row1").empty();
+    var term = $("#movieTitle").val().trim();
 
 //AJAX VARIABLES
 
@@ -41,13 +51,7 @@ function restart() {
     var genreURL = base + genre + key;
     var keywordURL = base + keywordID + key;
 
-//OBJECT VARIABLES
 
-    var finalGenre = [];
-    var ge = [];
-    var genreObj = {};
-    var movieObj = {};
-    var allMoviesObj = {};
 
 // CREATE AJAX CALL for genre map
 
@@ -97,37 +101,63 @@ function restart() {
 
 
 //*****HERE'S THE OBJECT THAT HOLDS ALL THE DATA - 
-            console.log(allMoviesObj);
+            // console.log(allMoviesObj);
 
 
 //DISPLAY
 
-            articleCounter++;
-            wellSection = $("<div>").addClass("container");
-            $("#results").append(wellSection);
-            wellSection = $("<div>").addClass("jumbotron");
-            $("#results").append(wellSection);
-            var wellSection1 = $("<button>");
-            wellSection1.attr("type", "button").addClass("btn btn-primary").text(articleCounter);
-            // wellSection.append(wellSection1);
-            // wellSection1=$("<p>").append(data3.substring(0, 10));
-            // wellSection.append(wellSection1);
-            var wellSection2 = $("<p>").prepend(allMoviesObj.name.name + "<br>").append("  Release Date: " + allMoviesObj.name.releaseDate + "  Popularity: " + allMoviesObj.name.popularity + "% " + "  Vote Average: " + allMoviesObj.name.voteAverage + "  Vote Count: " + allMoviesObj.name.voteCount + "  Genres: " + allMoviesObj.name.genres);
+          
+            
+            // for (var k; k<doubles.length; k++) {
+            //   if (doubles[k]==allMoviesObj.name.name) {a=true;}
+            //   else {a=false;}
+            // }
+        // console.log(allMoviesObj.name.posterPath);
+              if (!(allMoviesObj.name.posterPath=="https://image.tmdb.org/t/p/w92null")) {
+                  articleCounter++;
+         // var element2 = $("<div>").addClass("offset-md-1 col-md-2");
+            var element2 = $("<div>").addClass("col-md-2");
+            var element3 = $("<div>").addClass("hovereffect");
+            
+            var element4 = $("<img>").attr({"data-toggle":"modal", "data-target":"#moreInfo1", "class":"img-thumbnail", "src": allMoviesObj.name.posterPath, "alt":"book cover", "id": allMoviesObj.name.name}).css("margin-left", "21%").on("click", next);
+            var element5 = $("<p>").text(allMoviesObj.name.name).css("text-align", "center");
+            var element6 = $("<p>").text(allMoviesObj.name.releaseDate).css("text-align", "center");
+            // doubles.push(allMoviesObj.name.name);
+            // console.log(doubles);
 
-            var wellSection3 = $("<img>")
-            wellSection3.attr("src", allMoviesObj.name.posterPath);
+      $("#row1").append(element2);
+            element2.append(element3);
+            element2.append(element4);
+            element2.append(element5);
+            element2.append(element6);
+          } //if loop
+          } //for i
+           // closes for
+        function next() {
+    var imgClicked=$(this).attr("id");
+    for (k=0; k<allMoviesObj.name.genres.length; k++){
+    var genreChosen=allMoviesObj.name.genres[k]
+    console.log(genreChosen);
+  }
+    // for (var k=0; k<articleCounter; k++){
+    //   if (imgClicked===allMoviesObj.name.posterPath)
+    //     {var moviePicked=allMoviesObj.name.name;}
+    //     console.log(moviePicked);
+      $("#row1").empty();
+      $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
+      articleCounter=0;
+    // } //closes for k
 
-            // wellSection.append(wellSection1);
-            // wellSection1=$("<a>").attr("href", data2).text(data2).append("<br><br>");
+}; //closes next()
 
-            wellSection.append(wellSection1);
-            wellSection.append(wellSection2);
-            wellSection.append(wellSection3);
-          } // closes if
-        }) //coses function (results)
+        }); //closes function(response)2
 
-    }); //closes function event
-  });
+    }); //closes function(response)1
+  
+
+  // WAS HERE!!
+}); //closes function event
+
 }; //restart
 
 restart();

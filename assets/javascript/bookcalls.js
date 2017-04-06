@@ -1,18 +1,11 @@
-<<<<<<< HEAD
+
 // I think we want this broken out like this so that the movieSubject is swapped for the bookSubject?
 // movieSubject = "Animation";
 
 var bookSubject;
+
 var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
 
-=======
-// var subject = "juvenile,fiction";
-
-// I think we want this broken out like this so that the movieSubject is swapped for the bookSubject?
-// movieSubject = "Animation";
-
-var bookSubject;
->>>>>>> upstream/master
 switch (movieSubject) {
   case "Action":
     bookSubject = "action"
@@ -45,11 +38,7 @@ switch (movieSubject) {
     bookSubject = "history"
       break;
   case "Horror":
-<<<<<<< HEAD
     bookSubject = "horror"
-=======
-    bookSubject = "horro"
->>>>>>> upstream/master
       break;
   case "Music":
     bookSubject = movieSubject;
@@ -79,13 +68,10 @@ switch (movieSubject) {
     bookSubject = movieSubject;
 }
 
-<<<<<<< HEAD
+
 console.log(movieSubject);
 console.log(bookSubject);
-=======
-// console.log(movieSubject);
-// console.log(bookSubject);
->>>>>>> upstream/master
+
 
 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
 
@@ -94,10 +80,8 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
-
-
+  
   console.log(response);
-<<<<<<< HEAD
 
   for (var i =0; i < 10; i++) {
     $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
@@ -113,6 +97,7 @@ $.ajax({
     $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
     $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
 
+
     console.log(response.items[i].volumeInfo.categories);
     console.log(response.items[i].volumeInfo.averageRating);
     console.log(response.items[i].volumeInfo.ratingsCount);
@@ -121,29 +106,19 @@ $.ajax({
 });
 
 
-=======
+
   //get categories only
   for (var i =0; i < 40; i++) {
+
+
     console.log(response.items[i].volumeInfo.categories);
-    console.log(response.items[i].volumeInfo.title);
-    console.log(response.items[i].volumeInfo.authors);
-    console.log(response.items[i].volumeInfo.description);
-    console.log(response.items[i].volumeInfo.pageCount);
-    console.log(response.items[i].volumeInfo.imageLinks.thumbnail);
-    console.log(response.items[i].volumeInfo.previewLink);
-    console.log(response.items[i].volumeInfo.publishedDate);
     console.log(response.items[i].volumeInfo.averageRating);
     console.log(response.items[i].volumeInfo.ratingsCount);
-    console.log(response.items[i].volumeInfo.maturityRating);
-
   }
-  
- 
-  
+   
 });
 
 
->>>>>>> upstream/master
 
  
       

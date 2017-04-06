@@ -1,22 +1,134 @@
+body {
+
+	margin: 0 auto;
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+}
+
+h1 {
+	text-shadow: 5px 2px 2px black;
+	color: #FFFD8D;	
+}
+
+h2 {
+	text-align: center;
+	text-shadow: 5px 2px 2px black;
+	color: #FFFD8D;	
+	margin: 20px;
+}
+
+/* jumbotron */
+
+.jumbotron {
+	text-align: center;
+	background-image: url(../images/bookbackground.jpg);
+	background-size: cover;
+}
+
+.form-group {
+	margin-top: 20px;
+}
+
+#movieTitle {
+	font-family: "Special Elite", serif;
+}
+
+button {
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+	margin: 0 5px;
+	color: #FFFD8D;
+	opacity: .75;
+}
+
+button:hover {
+	opacity: 1;
+}
+
+/*not displayed until a movie is chosen*/
+#movieChosen {
+	background-color: #2290BA;
+	opacity: .75;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 20px 200px;
+	display: none;
+}
+
+/* Book Results display */
+/*change to not displayed until movie is picked*/
+
+#bookResults img {
+	border: 2px #FFFD8D solid;
+	margin: 5px;
+}
+
+#bookResults h5,p {	
+	text-align: center;
+	position: relative;
+	text-align: center;	
+}
+
+.hovereffect:hover img {
+	transform: scale(1.2);
+}
+
+.modal-header {
+	text-align: center;
+}
+
+.bookInfo {
+	text-align: left;
+}
+
+/* Recent Searches carousel */
+
+#recentSearches {
+	margin: 20px;
+}
+
+#recentMovieDisplay img {
+	margin: 0 auto;		
+	border: 2px #FFFD8D solid;
+}
 
 
-	/* Trying out a gradient (example colors from the Drop.js website) */
+/* footer */
 
+footer {
+	background-color: #FFFD8D;
+	text-align: center;
+}
 
+#footer p {
+	padding: 15px;
+	font-size: 12px;
+}
 
- .jumbotron { 
- 	/* Not stuck on any of these design ideas, just trying to test some things out */
- 	
- background-image: -webkit-linear-gradient(top left, #fff5e7, #ffedfe);
- background-image: -o-linear-gradient(top left, #fff5e7, #ffedfe);
- background-image: linear-gradient(to bottom right, #fff5e7, #ffedfe);
- 	text-align: center;
- 	background-color: transparent;
- 	font-family: 'Monoton', cursive;
- 	color: #5D4A66;
- 	word-spacing: 10px;
- }
+/* For footer positioning and to get rid of weird L-R scroll bar */
+html, body {
+	height: 100%;
+	overflow-x: hidden;
+}
 
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto;
+	/* Negative indent footer by its height */
+	margin: 0px auto -60px;
+	/* Pad bottom by footer height */
+	padding: 0px 0px 60px 0px;
+}
 
-
-
+/* Sticky footer styling! */
+#footer {
+	/* Must match margin-bottom in .wrapper CSS */
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	margin-top: 50px;
+	background-color: #FFFD8D;
+	text-align: center;
+	overflow: auto;
+	overflow-y: hidden;
+}

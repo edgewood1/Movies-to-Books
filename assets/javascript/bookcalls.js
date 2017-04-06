@@ -1,9 +1,9 @@
-// var subject = "juvenile,fiction";
-
 // I think we want this broken out like this so that the movieSubject is swapped for the bookSubject?
 // movieSubject = "Animation";
 
 var bookSubject;
+var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
+
 switch (movieSubject) {
   case "Action":
     bookSubject = "action"
@@ -36,7 +36,7 @@ switch (movieSubject) {
     bookSubject = "history"
       break;
   case "Horror":
-    bookSubject = "horro"
+    bookSubject = "horror"
       break;
   case "Music":
     bookSubject = movieSubject;
@@ -66,8 +66,8 @@ switch (movieSubject) {
     bookSubject = movieSubject;
 }
 
-// console.log(movieSubject);
-// console.log(bookSubject);
+console.log(movieSubject);
+console.log(bookSubject);
 
 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
 
@@ -79,24 +79,26 @@ $.ajax({
 
 
   console.log(response);
-  //get categories only
-  for (var i =0; i < 40; i++) {
+
+  for (var i =0; i < 10; i++) {
+    $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+    $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+    $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+    //get year out of published date
+    var pubDateString = response.items[i].volumeInfo.publishedDate;
+    var yearOnly = pubDateString.slice(0,4);
+
+    $("#book" + (i+1) + "Year").html(yearOnly);
+    $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
+    $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
+    $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
+    $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+
     console.log(response.items[i].volumeInfo.categories);
-    console.log(response.items[i].volumeInfo.title);
-    console.log(response.items[i].volumeInfo.authors);
-    console.log(response.items[i].volumeInfo.description);
-    console.log(response.items[i].volumeInfo.pageCount);
-    console.log(response.items[i].volumeInfo.imageLinks.thumbnail);
-    console.log(response.items[i].volumeInfo.previewLink);
-    console.log(response.items[i].volumeInfo.publishedDate);
     console.log(response.items[i].volumeInfo.averageRating);
     console.log(response.items[i].volumeInfo.ratingsCount);
-    console.log(response.items[i].volumeInfo.maturityRating);
-
   }
-  
- 
-  
+   
 });
 
 

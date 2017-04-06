@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<title>Would You Like a Book With that Movie?</title>
 
-<<<<<<< HEAD
 	
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -19,69 +18,27 @@
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
     <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
-=======
-<head>
-<title>Movies / Books</title>
-
-  <!-- Added a link to Bootstrap-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- Added a link to custom styles-->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- Added a link to Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Cinzel|Monoton" rel="stylesheet">
->>>>>>> upstream/master
 
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-<<<<<<< HEAD
-=======
-<div class="container-fluid">
->>>>>>> upstream/master
 
 	<header>
 		
 		<div class="jumbotron">
 
-<<<<<<< HEAD
 			<h1>Would You Like A Book With That Movie?</h1>
-=======
-    <div class="jumbotron">
-      <h1>Would You Like Some Books To Go With That Movie?</h1>
-    </div>
->>>>>>> upstream/master
 
-			<div class="form-group row">
+			<div id="movieSearchInput" class="form-group row">
       	
         		<input type="text" class="form-control offset-md-2 col-md-6" id="movieTitle" placeholder="Enter a favorite movie">
      	 		
-        		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Submit</button>
+        		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Search</button>
 
-<<<<<<< HEAD
     		</div> <!--end of form-group row-->
 
 <!--form and movieChosen will only be shown one at a time-->
-=======
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Search Parameters</h3>
-      </div>
-    <div class="panel-body">
-
-      <form>
-        <div class="form-group">
-          <label for="term">Search Term:</label>
-            <input type="text" class="form-control" id="term" placeholder="Roosevelt">
-        </div>
-          <!-- 
-<div class="form-group">
-  <label for="records">Number of Records to Retrieve:</label>
-  <input type="text" class="form-control" id="records" placeholder="10">
-</div>
->>>>>>> upstream/master
 
     		<div id="movieChosen">
     			<h2>chosen movie title here</h2>
@@ -90,36 +47,430 @@
 		</div> <!--end of jumbotron-->
 	</header>
 
-<!--recentSearches or book Results will display one at a time also-->
-<div class="container" id="wrap">
+<div id="row1">
+</div>
 
-<<<<<<< HEAD
+<div class="container" id="wrap">
+<!-- book Results will display-->
 	<div id="bookResults">
-=======
-          <p>
-            <button type="button" id="search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Search</button>
-            <button type="button" id="clear" class="btn btn-default">Clear Results</button>
-          </p>
->>>>>>> upstream/master
 
 		<h2>Try One of These!</h2>
 
-<!-- ///////////////////////////////////////////////////////////// -->
-		<div class="row" id="row1">
+		<div class="row">
 
+<!--book1-->
+			<div class="offset-md-1 col-md-2"> 
+
+				<div class="hovereffect">
+                                    
+					<img id="book1Cover" data-toggle="modal" data-target="#moreInfo1" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+			
+          <h5 id="book1Title">Book Title</h5> 
+          <p id="book1Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+				<!--modal1-->
+				<div class="modal fade" id="moreInfo1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  					<div class="modal-dialog modal-sm">
+    					<div class="modal-content">
+
+    						<div class="modal-header">
+
+        						<h5 class="modal-title" id="modal1Title">Book Title</h5>
+
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        						</button>
+
+      						</div> <!--end of modal header-->
+
+      						<div class="modal-body">
+                    <p>Written by <span id="book1Author"></span></p>
+       							<p class="bookInfo" id="book1Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book1PageCount"></span> pages</p> 
+                    <p><a id="book1PreviewLink" target="_blank" href="">Preview this book here</a></p>     	
+                  </div><!--end of modal1 body-->
+    						
+    					</div> <!--end of modal1 content-->
+  					</div> 
+				</div> <!--end of modal1-->
+			</div> 
+<!--end of book1-->
+
+<!--book2-->
+			<div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book2Cover" data-toggle="modal" data-target="#moreInfo2" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book2Title">Book Title</h5> 
+          <p id="book2Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal2-->
+        <div class="modal fade" id="moreInfo2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal2Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book2Author"></span></p>
+                    <p class="bookInfo" id="book2Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book2PageCount"></span> pages</p> 
+                    <p><a id="book2PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal2 body-->
+                
+              </div> <!--end of modal2 content-->
+            </div> 
+        </div> <!--end of modal2-->
+      </div> 
+<!--end of book2-->
+
+<!--book3-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book3Cover" data-toggle="modal" data-target="#moreInfo3" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book3Title">Book Title</h5> 
+          <p id="book3Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal3-->
+        <div class="modal fade" id="moreInfo3" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal3Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal3 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book3Author"></span></p>
+                    <p class="bookInfo" id="book3Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book3PageCount"></span> pages</p> 
+                    <p><a id="book3PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal3 body-->
+                
+              </div> <!--end of modal3 content-->
+            </div> 
+        </div> <!--end of modal3-->
+      </div> 
+<!--end of book3-->
+
+<!--book4-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book4Cover" data-toggle="modal" data-target="#moreInfo4" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book4Title">Book Title</h5> 
+          <p id="book4Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal4-->
+        <div class="modal fade" id="moreInfo4" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal4Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal4 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book4Author"></span></p>
+                    <p class="bookInfo" id="book4Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book4PageCount"></span> pages</p> 
+                    <p><a id="book4PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal4 body-->
+                
+              </div> <!--end of modal4 content-->
+            </div> 
+        </div> <!--end of modal4-->
+      </div> 
+<!--end of book4-->
+
+<!--book5-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book5Cover" data-toggle="modal" data-target="#moreInfo5" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book5Title">Book Title</h5> 
+          <p id="book5Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal5-->
+        <div class="modal fade" id="moreInfo5" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal5Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal5 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book5Author"></span></p>
+                    <p class="bookInfo" id="book5Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book5PageCount"></span> pages</p> 
+                    <p><a id="book5PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal5 body-->
+                
+              </div> <!--end of modal5 content-->
+            </div> 
+        </div> <!--end of modal5-->
+      </div> 
+<!--end of book5-->
 
 		</div> <!--end of book row1 -->
 
-		<div class="row" id="row2">
+    <!-- Start book row2 -->
+		<div class="row">
 
-			
+<!--book6-->
+      <div class="offset-md-1 col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book6Cover" data-toggle="modal" data-target="#moreInfo6" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book6Title">Book Title</h5> 
+          <p id="book6Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal6-->
+        <div class="modal fade" id="moreInfo6" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal6Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal6 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book6Author"></span></p>
+                    <p class="bookInfo" id="book6Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book6PageCount"></span> pages</p> 
+                    <p><a id="book6PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal6 body-->
+                
+              </div> <!--end of modal6 content-->
+            </div> 
+        </div> <!--end of modal6-->
+      </div> 
+<!--end of book6-->
+
+<!--book7-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book7Cover" data-toggle="modal" data-target="#moreInfo7" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book7Title">Book Title</h5> 
+          <p id="book7Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal7-->
+        <div class="modal fade" id="moreInfo7" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal7Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal7 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book7Author"></span></p>
+                    <p class="bookInfo" id="book7Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book7PageCount"></span> pages</p> 
+                    <p><a id="book7PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal7 body-->
+                
+              </div> <!--end of modal7 content-->
+            </div> 
+        </div> <!--end of modal7-->
+      </div> 
+<!--end of book7-->
+
+<!--book8-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book8Cover" data-toggle="modal" data-target="#moreInfo8" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book8Title">Book Title</h5> 
+          <p id="book8Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal8-->
+        <div class="modal fade" id="moreInfo8" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal8Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal8 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book8Author"></span></p>
+                    <p class="bookInfo" id="book8Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book8PageCount"></span> pages</p> 
+                    <p><a id="book8PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal8 body-->
+                
+              </div> <!--end of modal8 content-->
+            </div> 
+        </div> <!--end of modal8-->
+      </div> 
+<!--end of book8-->
+
+<!--book9-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book9Cover" data-toggle="modal" data-target="#moreInfo9" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book9Title">Book Title</h5> 
+          <p id="book9Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal9-->
+        <div class="modal fade" id="moreInfo9" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal9Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal9 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book9Author"></span></p>
+                    <p class="bookInfo" id="book9Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book9PageCount"></span> pages</p> 
+                    <p><a id="book9PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal9 body-->
+                
+              </div> <!--end of modal9 content-->
+            </div> 
+        </div> <!--end of modal9-->
+      </div> 
+<!--end of book9-->
+
+<!--book10-->
+      <div class="col-md-2"> 
+
+        <div class="hovereffect">
+                                    
+          <img id="book10Cover" data-toggle="modal" data-target="#moreInfo10" class="img-thumbnail" src="assets/images/tinybook.jpeg" alt="book cover">
+      
+          <h5 id="book10Title">Book Title</h5> 
+          <p id="book10Year">Year</p>
+
+        </div> <!--end of hovereffect div-->
+
+        <!--modal10-->
+        <div class="modal fade" id="moreInfo10" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modal10Title">Book Title</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div> <!--end of modal10 header-->
+
+                  <div class="modal-body">
+                    <p>Written by <span id="book10Author"></span></p>
+                    <p class="bookInfo" id="book10Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p><span id="book10PageCount"></span> pages</p> 
+                    <p><a id="book10PreviewLink" target="_blank" href="">Preview this book here</a></p>      
+                  </div><!--end of modal10 body-->
+                
+              </div> <!--end of modal10 content-->
+            </div> 
+        </div> <!--end of modal10-->
+      </div> 
+<!--end of book10-->
+		
 		</div> <!--end of book row2 -->
 
-
 	</div> <!--end of book result -->
-	    <div id="recentSearches">
 
-    	<h2>Recent Movies Searched</h2>
+
+	<div id="recentSearches">
+
+    <h2>Recent Movies Searched</h2>
 
 		<div class="row">
 			<div class="offset-md-4 col-md-4">
@@ -148,7 +499,7 @@
 							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="fifth book">
 						</div> 
 
-					</div> <!--end of carousel slide divs-->
+					</div> <!--end of carousel inner divs-->
 
 					<a class="carousel-control-prev" href="#recentMovieDisplay" role="button" data-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -176,8 +527,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!--our scripts-->
 <script src="assets/javascript/app.js"></script>
-<!-- <script src="assets/javascript/bookcalls.js"></script> -->
 <script src="assets/javascript/moviecalls.js"></script>
+<script src="assets/javascript/bookcalls.js"></script>
+
 <script src="assets/javascript/display.js"></script>
 </body>
 

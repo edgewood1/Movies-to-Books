@@ -103,7 +103,7 @@ $.ajax({
     console.log(response.items[i].volumeInfo.ratingsCount);
   }
    
-});
+});  // ajax closes
 
 
 

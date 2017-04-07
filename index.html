@@ -3,10 +3,8 @@
 <head>
 
 	<meta charset="UTF-8">
-	<title>Would You Like a Book With that Movie?</title>
 
- <!--stretchy js link to add stretchiness to input-->
-  <script src="assets/javascript/stretchy.js" async></script>
+	<title>Would You Like a Book With that Movie?</title>
 
  <!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -17,16 +15,24 @@
 	<!-- Firebase  -->
   <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
+  <!--stretchy js link to add stretchiness to input-->
+  <script src="assets/javascript/stretchy.js" async></script>
 
+  <!-- granim for gradient background -->
+  <script src="assets/javascript/granim.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
   <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
 
 	<link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
+
+<!--set gradient background on body-->
+  <canvas id="canvas-background"></canvas>
 
 	<header>
 		
@@ -36,16 +42,17 @@
 
 			<div id="movieSearchInput" class="form-group">
       	
-        		<input type="text" id="movieTitle" placeholder="Enter a favorite movie">
-     	 		
-        		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Search</button>
+        <!--don't add bootstrap class to input or stretchiness won't work-->
+      	<input type="text" id="movieTitle" placeholder="Enter a favorite movie">
+ 	 		
+    		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Search</button>
 
-    		</div> <!--end of form-group row-->
+    	</div> <!--end of form-group row-->
 
 <!--form and movieChosen will only be shown one at a time-->
 
-    		<div id="movieChosen">
-    			<h2>chosen movie title here</h2>
+    		<div id="movieChosenDiv">
+    			<h2>Your movie is: <br><span id="movieChosen">chosen movie title here</span></h2>
     		</div>
 
 		</div> <!--end of jumbotron-->
@@ -525,7 +532,7 @@
 			</div> <!--end of carousel col-->
 		</div> <!--end of carousel row div-->
 	</div><!--end of recentSearches div-->
-  
+
   <!-- End of container #wrap -->
   </div>
 
@@ -538,10 +545,7 @@
 <!--our scripts-->
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/moviecalls.js"></script>
-
 <!-- <script src="assets/javascript/bookcalls.js"></script> -->
-
-
 <script src="assets/javascript/display.js"></script>
 </body>
 

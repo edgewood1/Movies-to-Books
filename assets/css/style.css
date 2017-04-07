@@ -1,9 +1,30 @@
-
 body {
 
 	margin: 0 auto;
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
+}
+
+/*set fancy gradient background*/
+#canvas-basic {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
 }
 
 h1 {
@@ -34,39 +55,41 @@ h2 {
 	font-family: "Special Elite", serif;
 	margin-left: 25%;
 	margin-right: 25%;
-	padding: 20px;
+	padding: 10px 20px;
 }
 
-button {
+.btn {
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
-	margin: 0 5px;
+	margin: 10px;
+	width: 125px;
 	color: #FFFD8D;
 	opacity: .75;
 	margin-left: 25%;
 	margin-right: 25%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #1a6f8f;
 }
 
-button:hover {
+.btn:hover {
 	opacity: 1;
 }
 
 /*not displayed until a movie is chosen*/
-#movieChosen {
+#movieChosenDiv {
 	background-color: #2290BA;
 	opacity: .75;
-	border: 2px solid black;
+	border: 2px solid #1a6f8f;
 	border-radius: 5px;
 	margin: 20px 200px;
 	margin-left: 25%;
 	margin-right: 25%;
-/*	display: none;*/
 	padding: 10px;
 	min-width: 300px;
 }
 
 /* Book Results display */
-/*change to not displayed until movie is picked*/
 
 #bookResults img {
 	border: 2px #FFFD8D solid;
@@ -83,8 +106,11 @@ button:hover {
 	transform: scale(1.2);
 }
 
+/* Modals */
+
 .modal-header {
 	text-align: center;
+	background-color: #FFFD8D ;
 }
 
 .bookInfo {
@@ -101,7 +127,6 @@ button:hover {
 	margin: 0 auto;		
 	border: 2px #FFFD8D solid;
 }
-
 
 /* footer */
 

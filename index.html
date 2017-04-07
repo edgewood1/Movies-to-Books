@@ -5,19 +5,23 @@
 	<meta charset="UTF-8">
 	<title>Would You Like a Book With that Movie?</title>
 
-	
-	<!-- bootstrap -->
+ <!--stretchy js link to add stretchiness to input-->
+  <script src="assets/javascript/stretchy.js" async></script>
+
+ <!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	
+
 	<!-- Firebase  -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
-    <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
+
+  <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+
+  <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
 
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -30,9 +34,9 @@
 
 			<h1>Would You Like A Book With That Movie?</h1>
 
-			<div id="movieSearchInput" class="form-group row">
+			<div id="movieSearchInput" class="form-group">
       	
-        		<input type="text" class="form-control offset-md-2 col-md-6" id="movieTitle" placeholder="Enter a favorite movie">
+        		<input type="text" id="movieTitle" placeholder="Enter a favorite movie">
      	 		
         		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Search</button>
 

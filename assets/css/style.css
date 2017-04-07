@@ -1,9 +1,30 @@
-
 body {
 
 	margin: 0 auto;
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
+}
+
+/*set fancy gradient background*/
+#canvas-basic {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
 }
 
 h1 {

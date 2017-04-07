@@ -97,15 +97,22 @@ function restart() {
               
               genres[j] = genres[j].toString();
               finalGenre.push(genreObj[genres[j]]); 
-              // placing genre values into final genres
+              // placing genre values into finalGenre
+              // then store finalgenre in movieObj.genres
               movieObj["genres"] = finalGenre;
-              movieObj["name"] = data.results[i].title;
-              allMoviesObj["name"] = movieObj;
+              console.log(movieObj.genres);
+            
             }
-            //finalGenre holds a string of 
+            // console.log(movieObj.genres);
+              movieObj["name"] = data.results[i].title;
+              //genre is now inside allMoviesObj
+              allMoviesObj["name"] = movieObj;
+              // console.log(allMoviesObj.name.genres);
+              // console.log(movieObj.genres);
+            //below clears the finalGenre
             finalGenre = [];
-            console.log(finalGenre);
-
+            // console.log(allMoviesObj.name.genres);
+// console.log(allMoviesObj);
 ///// ---
 
               if (!(allMoviesObj.name.posterPath=="https://image.tmdb.org/t/p/w92null")) {
@@ -119,7 +126,9 @@ function restart() {
             var element6 = $("<p>").text(allMoviesObj.name.releaseDate).css("text-align", "center");
             // doubles.push(allMoviesObj.name.name);
             // console.log(doubles);
-
+   
+             // console.log(allMoviesObj.name.genres);
+ 
       $("#movieResults").append(element2);
             element2.append(element3);
             element2.append(element4);
@@ -129,12 +138,12 @@ function restart() {
           } //for i
            // closes for
         function next() {
-            console.log(allMoviesObj.name.genres);
+      
     var imgClicked=$(this).attr("id");
     for (k=0; k<allMoviesObj.name.genres.length; k++){
-
+  
     genreChosen=allMoviesObj.name.genres[k]
-    console.log(genreChosen);
+    // console.log(genreChosen);
   }
     // for (var k=0; k<articleCounter; k++){
     //   if (imgClicked===allMoviesObj.name.posterPath)

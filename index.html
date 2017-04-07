@@ -5,19 +5,23 @@
 	<meta charset="UTF-8">
 	<title>Would You Like a Book With that Movie?</title>
 
-	
-	<!-- bootstrap -->
+ <!--stretchy js link to add stretchiness to input-->
+  <script src="assets/javascript/stretchy.js" async></script>
+
+ <!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	
+
 	<!-- Firebase  -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
-    <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
+
+  <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+
+  <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
 
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -30,9 +34,9 @@
 
 			<h1>Would You Like A Book With That Movie?</h1>
 
-			<div id="movieSearchInput" class="form-group row">
+			<div id="movieSearchInput" class="form-group">
       	
-        		<input type="text" class="form-control offset-md-2 col-md-6" id="movieTitle" placeholder="Enter a favorite movie">
+        		<input type="text" id="movieTitle" placeholder="Enter a favorite movie">
      	 		
         		<button type="submit" id="submitMovie" class="btn btn-default col-md-2">Search</button>
 
@@ -56,6 +60,7 @@
   </div>
 
 <!--Book Results will display here-->
+
 	<div id="bookResults">
 
 		<h2>Try One of These!</h2>
@@ -132,7 +137,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book2Author"></span></p>
-                    <p class="bookInfo" id="book2Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book2Info">More book information will be here.</p>
                     <p><span id="book2PageCount"></span> pages</p> 
                     <p><a id="book2PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal2 body-->
@@ -172,7 +177,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book3Author"></span></p>
-                    <p class="bookInfo" id="book3Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book3Info">More book information will be here. </p>
                     <p><span id="book3PageCount"></span> pages</p> 
                     <p><a id="book3PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal3 body-->
@@ -212,7 +217,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book4Author"></span></p>
-                    <p class="bookInfo" id="book4Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book4Info">More book information will be here.</p>
                     <p><span id="book4PageCount"></span> pages</p> 
                     <p><a id="book4PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal4 body-->
@@ -252,7 +257,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book5Author"></span></p>
-                    <p class="bookInfo" id="book5Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book5Info">More book information will be here.</p>
                     <p><span id="book5PageCount"></span> pages</p> 
                     <p><a id="book5PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal5 body-->
@@ -297,7 +302,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book6Author"></span></p>
-                    <p class="bookInfo" id="book6Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book6Info">More book information will be here.</p>
                     <p><span id="book6PageCount"></span> pages</p> 
                     <p><a id="book6PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal6 body-->
@@ -337,7 +342,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book7Author"></span></p>
-                    <p class="bookInfo" id="book7Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book7Info">More book information will be here.</p>
                     <p><span id="book7PageCount"></span> pages</p> 
                     <p><a id="book7PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal7 body-->
@@ -377,7 +382,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book8Author"></span></p>
-                    <p class="bookInfo" id="book8Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book8Info">More book information will be here.</p>
                     <p><span id="book8PageCount"></span> pages</p> 
                     <p><a id="book8PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal8 body-->
@@ -417,7 +422,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book9Author"></span></p>
-                    <p class="bookInfo" id="book9Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book9Info">More book information will be here.</p>
                     <p><span id="book9PageCount"></span> pages</p> 
                     <p><a id="book9PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal9 body-->
@@ -457,7 +462,7 @@
 
                   <div class="modal-body">
                     <p>Written by <span id="book10Author"></span></p>
-                    <p class="bookInfo" id="book10Info">More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings More book information will be here.  desc. ratings number of ratingsMore book information will be here.  desc. ratings number of ratings</p>
+                    <p class="bookInfo" id="book10Info">More book information will be here.</p>
                     <p><span id="book10PageCount"></span> pages</p> 
                     <p><a id="book10PreviewLink" target="_blank" href="">Preview this book here</a></p>      
                   </div><!--end of modal10 body-->
@@ -485,23 +490,23 @@
 					<div class="carousel-inner" role="listbox">
 
 						<div class="carousel-item active">
-							<img class="d-block img-fluid" src="assets/images/movieplaceholder.jpeg" height="800" alt="first book">
+							<img class="d-block img-fluid" src="assets/images/movieplaceholder.jpeg" height="800" alt="Recent Movie 1">
 						</div> 
 
 						<div class="carousel-item">
-							<img class="d-block img-fluid" src="assets/images/movieplaceholder.jpeg" alt="second book">
+							<img class="d-block img-fluid" src="assets/images/movieplaceholder.jpeg" alt="Recent Movie 2">
 						</div> 
 
 						<div class="carousel-item">
-							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="third book">
+							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="Recent Movie 3">
 						</div> 
 
 						<div class="carousel-item">
-							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="fourth book">
+							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="Recent Movie 4">
 						</div> 
 
 						<div class="carousel-item">
-							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="fifth book">
+							<img class="d-block" src="assets/images/movieplaceholder.jpeg" alt="Recent Movie 5">
 						</div> 
 
 					</div> <!--end of carousel inner divs-->
@@ -534,7 +539,6 @@
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/moviecalls.js"></script>
 <script src="assets/javascript/bookcalls.js"></script>
-
 <script src="assets/javascript/display.js"></script>
 </body>
 

@@ -14,6 +14,7 @@ var doubles=[];
   var voteCount;
   var releaseDate;
   var a;
+  var movies={};
   //OBJECT VARIABLES
 
     var finalGenre = [];
@@ -82,12 +83,12 @@ function restart() {
 //CREATE MOVIE OBJECTS
             // $("#row2").empty();
           for (i = 0; i < data.results.length; i++) {
-
-            movieObj["popularity"] = (data.results[i].popularity).toFixed(2);
-            movieObj["posterPath"] = "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path;
-            movieObj["releaseDate"] = data.results[i].release_date;
-            movieObj["voteAverage"] = data.results[i].vote_average;
-            movieObj["voteCount"] = data.results[i].vote_count;
+            name = data.results[i].title;
+            // movie[name] ={"popularity":data.results[i].popularity.toFixed(2);}
+            movies[name] ={"posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path};
+            movies[name] = {"releaseDate": data.results[i].release_date};
+            // movieObj["voteAverage"] = data.results[i].vote_average;
+            // movieObj["voteCount"] = data.results[i].vote_count;
             genres = data.results[i].genre_ids; 
             // genres is an array with genre ids for each movie
             // console.log(genres);.
@@ -99,19 +100,19 @@ function restart() {
               finalGenre.push(genreObj[genres[j]]); 
               // placing genre values into finalGenre
               // then store finalgenre in movieObj.genres
-              movieObj["genres"] = finalGenre;
+              movies[name] = {"genre": finalGenre};
               console.log(movieObj.genres);
             
             }
             // console.log(movieObj.genres);
-              movieObj["name"] = data.results[i].title;
+              
               //genre is now inside allMoviesObj
-              allMoviesObj["name"] = movieObj;
+              // allMoviesObj["name"] = movieObj;
               // console.log(allMoviesObj.name.genres);
               // console.log(movieObj.genres);
             //below clears the finalGenre
             finalGenre = [];
-            // console.log(allMoviesObj.name.genres);
+            
 // console.log(allMoviesObj);
 ///// ---
 
@@ -121,9 +122,9 @@ function restart() {
             var element2 = $("<div>").addClass("col-md-2");
             var element3 = $("<div>").addClass("hovereffect");
             
-            var element4 = $("<img>").attr({"class":"img-thumbnail", "src": allMoviesObj.name.posterPath, "alt":"book cover", "id": allMoviesObj.name.name}).css({"width":"90%"}).on("click", next);
-            var element5 = $("<p>").text(allMoviesObj.name.name).css("text-align", "center");
-            var element6 = $("<p>").text(allMoviesObj.name.releaseDate).css("text-align", "center");
+            var element4 = $("<img>").attr({"class":"img-thumbnail", "src": movies[name].posterPath, "alt":"book cover", "id": movies[name].name}).css({"width":"90%"}).on("click", next);
+            var element5 = $("<p>").text(movies[name].name).css("text-align", "center");
+            var element6 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
             // doubles.push(allMoviesObj.name.name);
             // console.log(doubles);
    
@@ -138,11 +139,12 @@ function restart() {
           } //for i
            // closes for
         function next() {
-      
-    var imgClicked=$(this).attr("id");
-    for (k=0; k<allMoviesObj.name.genres.length; k++){
+    //   console.log(allMoviesObj.name.genres);
+    // var imgClicked=$(this).attr("id");
+    // //id is the name of the movie, but it could be the order of the 
+    // for (k=0; k<allMoviesObj.name.genres.length; k++){
   
-    genreChosen=allMoviesObj.name.genres[k]
+    // genreChosen=allMoviesObj.name.genres[k]
     // console.log(genreChosen);
   }
     // for (var k=0; k<articleCounter; k++){
@@ -151,11 +153,11 @@ function restart() {
     //     console.log(moviePicked);
       // $("#row1").empty();
 
-      $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
-      articleCounter=0;
+      // $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
+      // articleCounter=0;
     // } //closes for k
 
-}; //closes next()
+// }; //closes next()
 
         }); //closes function(response)2
 

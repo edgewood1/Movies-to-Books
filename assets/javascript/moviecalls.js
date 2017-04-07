@@ -26,6 +26,7 @@ function movieCall() {
     event.preventDefault();
     var term = $("#movieTitle").val().trim();
 
+
 //AJAX VARIABLES
 
     var base = "https://api.themoviedb.org/3/";
@@ -92,7 +93,7 @@ function movieCall() {
 
 //clear books so that we can display movies
           
-            $("bookResults").empty();
+            // $("#bookResults").empty();
 
 /// display all movies except those without a poster path
 

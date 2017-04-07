@@ -37,17 +37,21 @@ h2 {
 	padding: 20px;
 }
 
-button {
+.btn {
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
-	margin: 0 5px;
+	margin: 10px;
+	width: 125px;
 	color: #FFFD8D;
 	opacity: .75;
 	margin-left: 25%;
 	margin-right: 25%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #1a6f8f;
 }
 
-button:hover {
+.btn:hover {
 	opacity: 1;
 }
 
@@ -55,7 +59,7 @@ button:hover {
 #movieChosen {
 	background-color: #2290BA;
 	opacity: .75;
-	border: 2px solid black;
+	border: 2px solid #1a6f8f;
 	border-radius: 5px;
 	margin: 20px 200px;
 	margin-left: 25%;

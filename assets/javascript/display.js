@@ -9,7 +9,7 @@ var granimInstance = new Granim({
             gradients: [
                 ['#AA076B', '#61045F'],
                 ['#02AAB0', '#00CDAC'],
-                ['#DA22FF', '#9733EE']
+                ['#DA22FF', '#9733EE'],
             ]
         }
     }

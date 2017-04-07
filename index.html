@@ -3,10 +3,8 @@
 <head>
 
 	<meta charset="UTF-8">
-	<title>Would You Like a Book With that Movie?</title>
 
- <!--stretchy js link to add stretchiness to input-->
-  <script src="assets/javascript/stretchy.js" async></script>
+	<title>Would You Like a Book With that Movie?</title>
 
  <!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -17,7 +15,14 @@
 	<!-- Firebase  -->
   <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
+  <!--stretchy js link to add stretchiness to input-->
+  <script src="assets/javascript/stretchy.js" async></script>
+
+  <!-- granim for gradient background -->
   <script src="assets/javascript/granim.min.js"></script>
+
+  <!--izimodal library for fancier modals-->
+  <script src="https://cdnjs.com/libraries/izimodal"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
@@ -29,7 +34,7 @@
 <body>
 
 <!--set gradient background on body-->
-  <canvas id="canvas-basic"></canvas>
+  <canvas id="canvas-background"></canvas>
 
 	<header>
 		
@@ -47,8 +52,8 @@
 
 <!--form and movieChosen will only be shown one at a time-->
 
-    		<div id="movieChosen">
-    			<h2>chosen movie title here</h2>
+    		<div id="movieChosenDiv">
+    			<h2>Your movie is: <br><span id="movieChosen">chosen movie title here</span></h2>
     		</div>
 
 		</div> <!--end of jumbotron-->

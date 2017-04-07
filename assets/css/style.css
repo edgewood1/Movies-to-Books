@@ -32,6 +32,9 @@ h2 {
 
 #movieTitle {
 	font-family: "Special Elite", serif;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 20px;
 }
 
 button {
@@ -40,6 +43,8 @@ button {
 	margin: 0 5px;
 	color: #FFFD8D;
 	opacity: .75;
+	margin-left: 25%;
+	margin-right: 25%;
 }
 
 button:hover {
@@ -53,7 +58,11 @@ button:hover {
 	border: 2px solid black;
 	border-radius: 5px;
 	margin: 20px 200px;
-	display: none;
+	margin-left: 25%;
+	margin-right: 25%;
+/*	display: none;*/
+	padding: 10px;
+	min-width: 300px;
 }
 
 /* Book Results display */

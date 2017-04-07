@@ -8,12 +8,13 @@ var doubles=[];
   var popularity;
   var posterPath;
   var bookSubject;
-  var genreChosen;
+  var genreChosen=[];
   var release;
   var voteAverage;
   var voteCount;
   var releaseDate;
   var a;
+  var movies={};
   //OBJECT VARIABLES
 
     var finalGenre = [];
@@ -82,24 +83,37 @@ function restart() {
 //CREATE MOVIE OBJECTS
             // $("#row2").empty();
           for (i = 0; i < data.results.length; i++) {
-
-            movieObj["popularity"] = (data.results[i].popularity).toFixed(2);
-            movieObj["posterPath"] = "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path;
-            movieObj["releaseDate"] = data.results[i].release_date;
-            movieObj["voteAverage"] = data.results[i].vote_average;
-            movieObj["voteCount"] = data.results[i].vote_count;
-            genres = data.results[i].genre_ids; // genres is an array with all genre ids.
-
+            name = data.results[i].title;
+            // movie[name] ={"popularity":data.results[i].popularity.toFixed(2);}
+            movies[name] ={"posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path};
+            movies[name] = {"releaseDate": data.results[i].release_date};
+            // movieObj["voteAverage"] = data.results[i].vote_average;
+            // movieObj["voteCount"] = data.results[i].vote_count;
+            genres = data.results[i].genre_ids; 
+            // genres is an array with genre ids for each movie
+            // console.log(genres);.
             
-            for (var j = 0; j < genres.length; j++) { //loop to translate genres
+            //loop to translate genres
+            for (var j = 0; j < genres.length; j++) { 
               
               genres[j] = genres[j].toString();
-              finalGenre.push(genreObj[genres[j]]); // placing genre values into final 
-              movieObj["genres"] = finalGenre;
-              movieObj["name"] = data.results[i].title;
-              allMoviesObj["name"] = movieObj;
+              finalGenre.push(genreObj[genres[j]]); 
+              // placing genre values into finalGenre
+              // then store finalgenre in movieObj.genres
+              movies[name] = {"genre": finalGenre};
+              console.log(movieObj.genres);
+            
             }
+            // console.log(movieObj.genres);
+              
+              //genre is now inside allMoviesObj
+              // allMoviesObj["name"] = movieObj;
+              // console.log(allMoviesObj.name.genres);
+              // console.log(movieObj.genres);
+            //below clears the finalGenre
             finalGenre = [];
+            
+// console.log(allMoviesObj);
 ///// ---
 
               if (!(allMoviesObj.name.posterPath=="https://image.tmdb.org/t/p/w92null")) {
@@ -108,12 +122,14 @@ function restart() {
             var element2 = $("<div>").addClass("col-md-2");
             var element3 = $("<div>").addClass("hovereffect");
             
-            var element4 = $("<img>").attr({"class":"img-thumbnail", "src": allMoviesObj.name.posterPath, "alt":"book cover", "id": allMoviesObj.name.name}).css({"width":"90%"}).on("click", next);
-            var element5 = $("<p>").text(allMoviesObj.name.name).css("text-align", "center");
-            var element6 = $("<p>").text(allMoviesObj.name.releaseDate).css("text-align", "center");
+            var element4 = $("<img>").attr({"class":"img-thumbnail", "src": movies[name].posterPath, "alt":"book cover", "id": movies[name].name}).css({"width":"90%"}).on("click", next);
+            var element5 = $("<p>").text(movies[name].name).css("text-align", "center");
+            var element6 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
             // doubles.push(allMoviesObj.name.name);
             // console.log(doubles);
-
+   
+             // console.log(allMoviesObj.name.genres);
+ 
       $("#movieResults").append(element2);
             element2.append(element3);
             element2.append(element4);
@@ -123,10 +139,13 @@ function restart() {
           } //for i
            // closes for
         function next() {
-    var imgClicked=$(this).attr("id");
-    for (k=0; k<allMoviesObj.name.genres.length; k++){
-    genreChosen=allMoviesObj.name.genres[k]
-    console.log(genreChosen);
+    //   console.log(allMoviesObj.name.genres);
+    // var imgClicked=$(this).attr("id");
+    // //id is the name of the movie, but it could be the order of the 
+    // for (k=0; k<allMoviesObj.name.genres.length; k++){
+  
+    // genreChosen=allMoviesObj.name.genres[k]
+    // console.log(genreChosen);
   }
     // for (var k=0; k<articleCounter; k++){
     //   if (imgClicked===allMoviesObj.name.posterPath)
@@ -134,11 +153,11 @@ function restart() {
     //     console.log(moviePicked);
       // $("#row1").empty();
 
-      $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
-      articleCounter=0;
+      // $("#movieChosen").html(imgClicked).css({"display": "block", "color": "white", "font-size": "150%"});
+      // articleCounter=0;
     // } //closes for k
 
-}; //closes next()
+// }; //closes next()
 
         }); //closes function(response)2
 
@@ -158,104 +177,104 @@ function restart() {
 
 // var movieSubject = "Adventure"; //for testing purposes- change this to be on click movie picked by user
 
-switch (genreChosen) {
-  case "Action":
-    bookSubject = "action"
-      break;
-  case "Adventure":
-    bookSubject = "adventure"
-      break;
-  case "Animation":
-    bookSubject = "comics||animation||graphic novel"
-      break;
-  case "Comedy":
-    bookSubject = "humor"
-      break;
-  case "Crime":
-    bookSubject = "crime"
-      break;
-  case "Documentary":
-    bookSubject = "history||biography||non-fiction"
-      break;
-  case "Drama":
-    bookSubject = "melodrama"
-      break;
-  case "Family":
-    bookSubject = "juvenile fiction"
-      break;
-  case "Fantasy":
-    bookSubject = "fantasy"
-      break;
-  case "History":
-    bookSubject = "history"
-      break;
-  case "Horror":
-    bookSubject = "horror"
-      break;
-  case "Music":
-    bookSubject = movieSubject;
-      break;
-  case "Mystery":
-    bookSubject = "mystery"
-      break;
-  case "Romance":
-    bookSubject = "romance"
-      break;
-  case "Science Fiction":
-    bookSubject = "science fiction"
-      break;
-  case "TV Movie":
-    bookSubject = "emotions"
-      break;
-  case "Thriller":
-    bookSubject = "thriller"
-      break;
-  case "War":
-    bookSubject = "war||fiction"
-      break;
-  case "Western":
-    bookSubject = "western"
-      break;
-  default:
-    bookSubject = movieSubject;
-}
+// switch (genreChosen) {
+//   case "Action":
+//     bookSubject = "action"
+//       break;
+//   case "Adventure":
+//     bookSubject = "adventure"
+//       break;
+//   case "Animation":
+//     bookSubject = "comics||animation||graphic novel"
+//       break;
+//   case "Comedy":
+//     bookSubject = "humor"
+//       break;
+//   case "Crime":
+//     bookSubject = "crime"
+//       break;
+//   case "Documentary":
+//     bookSubject = "history||biography||non-fiction"
+//       break;
+//   case "Drama":
+//     bookSubject = "melodrama"
+//       break;
+//   case "Family":
+//     bookSubject = "juvenile fiction"
+//       break;
+//   case "Fantasy":
+//     bookSubject = "fantasy"
+//       break;
+//   case "History":
+//     bookSubject = "history"
+//       break;
+//   case "Horror":
+//     bookSubject = "horror"
+//       break;
+//   case "Music":
+//     bookSubject = movieSubject;
+//       break;
+//   case "Mystery":
+//     bookSubject = "mystery"
+//       break;
+//   case "Romance":
+//     bookSubject = "romance"
+//       break;
+//   case "Science Fiction":
+//     bookSubject = "science fiction"
+//       break;
+//   case "TV Movie":
+//     bookSubject = "emotions"
+//       break;
+//   case "Thriller":
+//     bookSubject = "thriller"
+//       break;
+//   case "War":
+//     bookSubject = "war||fiction"
+//       break;
+//   case "Western":
+//     bookSubject = "western"
+//       break;
+//   default:
+//     bookSubject = movieSubject;
+// }
 
 
-console.log(movieSubject);
-console.log(bookSubject);
+// console.log(movieSubject);
+// console.log(bookSubject);
 
 
-var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
+// var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
 
-// Creating an AJAX call for the specific movie button being clicked
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).done(function(response) {
+// // Creating an AJAX call for the specific movie button being clicked
+// $.ajax({
+//   url: queryURL,
+//   method: "GET"
+// }).done(function(response) {
   
-  console.log(response);
+//   console.log(response);
 
-  for (var i =0; i < 10; i++) {
-    $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
-    $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-    $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-    //get year out of published date
-    var pubDateString = response.items[i].volumeInfo.publishedDate;
-    var yearOnly = pubDateString.slice(0,4);
+//   for (var i =0; i < 10; i++) {
+//     $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+//     $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+//     $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+//     //get year out of published date
+//     var pubDateString = response.items[i].volumeInfo.publishedDate;
+//     var yearOnly = pubDateString.slice(0,4);
 
-    $("#book" + (i+1) + "Year").html(yearOnly);
-    $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
-    $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
-    $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
-    $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+//     $("#book" + (i+1) + "Year").html(yearOnly);
+//     $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
+//     $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
+//     $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
+//     $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
 
 
-    console.log(response.items[i].volumeInfo.categories);
-    console.log(response.items[i].volumeInfo.averageRating);
-    console.log(response.items[i].volumeInfo.ratingsCount);
-  }
+//     console.log(response.items[i].volumeInfo.categories);
+//     console.log(response.items[i].volumeInfo.averageRating);
+//     console.log(response.items[i].volumeInfo.ratingsCount);
+//   }
    
-});  // ajax closes
+// });  // ajax closes
 
 
 

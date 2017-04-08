@@ -19,8 +19,9 @@
   var popularity;
   var posterPath;
   var bookSubject;
-  var genreObj =[]
+  var genreObj =[];
   var genreChosen=[];
+  var genreToSearch;
   var releaseDate;
   var a;
   var movies={}; 
@@ -40,62 +41,72 @@ function movieCall() {
 
 //IF SEARCH BUTTON CLICK, STORE INPUT IN "TERM"
 
-  $("#submitMovie").on("click", function(event) {
-    event.preventDefault();
-    var term = $("#movieTitle").val().trim();
-	$("#movieTitle").val("");
-	$("#movieResults").show();
-	$("#movieChosenDiv").html("<h2>Click the movie you want!</h2>");
-	$("#movieChosenDiv").show();
+	$("#submitMovie").on("click", function(event) {
+
+		// Prevents default submit button action/prevents page load
+		event.preventDefault();
+
+		// Set variable term equal to search input
+		var term = $("#movieTitle").val().trim();
+
+		// Clears search box input
+		$("#movieTitle").val("");
+
+		// Shows movieResults div
+		$("#movieResults").show();
+
+		// Changes text of movieChosenDiv to tell user how to use
+		$("#movieChosenDiv").html("<h2>Click the movie you want!</h2>");
+
+		// Shows movieChosenDiv (it is hidden on page load)
+		$("#movieChosenDiv").show();
 
 //AJAX VARIABLES
 
-    var base = "https://api.themoviedb.org/3/";
-    var search = "search/movie?query='" + term + "'&";
-    var genre = "genre/movie/list?";
-    var keywordID = "/keyword/{14644}?";
-    var keyword = "search/keyword?query='" + term + "'&";
-    var key = "api_key=b287a269fa3356a822e8c1b358a6f0fc";
+	var base = "https://api.themoviedb.org/3/";
+	var search = "search/movie?query='" + term + "'&";
+	var genre = "genre/movie/list?";
+	var key = "api_key=b287a269fa3356a822e8c1b358a6f0fc";
 
-    var searchURL = base + search + key;
-    var genreURL = base + genre + key;
-    var keywordURL = base + keywordID + key;
+	var searchURL = base + search + key;
+	var genreURL = base + genre + key;
 
 // CREATE AJAX CALL for genre map
+	$.ajax({
+		url: genreURL,
+		method: "GET"
+	}).done(function(response) {
+		data = response;
 
-    $.ajax({
-      url: genreURL,
-      method: "GET"
-    }).done(function(response) {
-      var articleCounter = 0;
-      data = response;
-
-      for (i = 0; i < data.genres.length; i++) {
-        var genreK = data.genres[i].id
-        var genreV = data.genres[i].name
-        genreObj[genreK] = genreV;
-          }
-      
+// Getting all the genre stuff and creating an array
+	for (i = 0; i < data.genres.length; i++) {
+		var genreK = data.genres[i].id
+		var genreV = data.genres[i].name
+			genreObj[genreK] = genreV;
+		}
 
 // CREATE AJAX call for movie data
-
-      $.ajax({
-          url: searchURL,
-          method: "GET"
-        }).done(function(response) {
-          var articleCounter = 0;
-          data = response;
+	$.ajax({
+		url: searchURL,
+		method: "GET"
+	}).done(function(response) {
+		data = response;
 
 //CREATE MOVIE OBJECTS
             
-          for (i = 0; i < data.results.length; i++) {
-            name = data.results[i].title;
-			var yearOnly = data.results[i].release_date.slice(0,4);
-            movies[name] ={"title": name, 
-              "posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
-                "releaseDate": yearOnly
-                    };
-            genres = data.results[i].genre_ids; 
+	for (i = 0; i < data.results.length; i++) {
+		name = data.results[i].title;
+
+		// Pulls only year from release date info
+		var yearOnly = data.results[i].release_date.slice(0,4);
+
+		movies[name] ={
+			"title": name, 
+			"posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
+			"releaseDate": yearOnly
+		};
+
+		genres = data.results[i].genre_ids; 
             
 //TRANSLATE GENRE ID'S
 
@@ -129,8 +140,6 @@ function movieCall() {
 /// display all movies except those without a poster path
 
             if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w92null")) {
-                  
-                  articleCounter++;
                   var element2 = $("<div>").addClass("col-md-2");
                   var element3 = $("<div>").addClass("hovereffect");
                   var element4 = $("<img>").attr({"class":"img-thumbnail", 
@@ -173,12 +182,19 @@ function bookCall() {
 		posterPath:movies[name].posterPath
 	});
 
-//GRAB TEH GENRE FROM THE MOVIE OBJECT
-    genreChosen=movies[name].genre;
-    console.log("all genres = " + movies[name].genre);
+//GRAB THE GENRES FROM THE MOVIE OBJECT
+	genreChosen = movies[name].genre;
+	console.log("all genres = " + genreChosen);
+
 //GRAB THE FIRST GENRE LISTED
-    genreChosen=genreChosen[0];
-    console.log("first genre = " + genreChosen);
+	for (var k; k < genreChosen.length; k++) {
+		min = Math.ceil(0);
+		max = Math.floor(genreChosen.length-1);
+		var genreIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+		console.log(genreIndex);
+		genreToSearch = genreChosen[genreIndex];
+	}
+	console.log("first genre = " + genreToSearch);
 
 //DISPLAY NAME OF CLICKED MOVIE ON DISPLAY
 	$("#movieChosenDiv").hide();

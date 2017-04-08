@@ -9,7 +9,7 @@
 	};
 	firebase.initializeApp(config);
 
-	//moviecall variables  
+//moviecall variables  
   var data;
   var url;
   var name;
@@ -80,9 +80,10 @@ function movieCall() {
             
           for (i = 0; i < data.results.length; i++) {
             name = data.results[i].title;
+			var yearOnly = data.results[i].release_date.slice(0,4);
             movies[name] ={"title": name, 
               "posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
-                "releaseDate": data.results[i].release_date
+                "releaseDate": yearOnly
                     };
             genres = data.results[i].genre_ids; 
             
@@ -232,7 +233,6 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
-  
 
   for (var i =0; i < 10; i++) {
     $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);

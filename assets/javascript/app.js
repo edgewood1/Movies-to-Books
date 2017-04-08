@@ -168,7 +168,7 @@ function bookCall() {
 
 //DATABASE WRITE
 	database.ref(movies[name].title).set({
-		name:movies[name].title
+		name:movies[name].title,
 		date:movies[name].releaseDate,
 		posterPath:movies[name].posterPath
 	});

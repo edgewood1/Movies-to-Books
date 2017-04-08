@@ -25,6 +25,13 @@
   var movies={}; 
   var finalGenre = [];
 
+function onPageLoad() {
+	$("#movieChosenDiv").hide();
+	$("#bookResults").hide();
+	$("#movieResults").hide();
+	movieCall();
+}
+
 
 function movieCall() {
 
@@ -37,6 +44,7 @@ function movieCall() {
     event.preventDefault();
     var term = $("#movieTitle").val().trim();
 	$("#movieTitle").val("");
+	$("#movieResults").show();
 	$("#movieChosenDiv").html("<h2>Click the movie you want!</h2>");
 	$("#movieChosenDiv").show();
 
@@ -142,6 +150,8 @@ function movieCall() {
 }; //closes moviecall()
 
 function bookCall() {
+	
+	$("#bookResults").show();
 
 //GRAB THE MOVIE OBJECT CLICKED
     name=$(this).attr("id");
@@ -261,5 +271,5 @@ $.ajax({
 
 } // close bookCall() 
 
-movieCall();
+onPageLoad();
 

@@ -36,7 +36,9 @@ function movieCall() {
   $("#submitMovie").on("click", function(event) {
     event.preventDefault();
     var term = $("#movieTitle").val().trim();
-
+	$("#movieTitle").val("");
+	$("#movieChosenDiv").html("<h2>Click the movie you want!</h2>");
+	$("#movieChosenDiv").show();
 
 //AJAX VARIABLES
 
@@ -153,6 +155,9 @@ function bookCall() {
     console.log("first genre = " + genreChosen);
 
 //DISPLAY NAME OF CLICKED MOVIE ON DISPLAY
+	$("#movieChosenDiv").hide();
+	$("#movieChosenDiv").html("<h2>Your movie is: <br><span id='movieChosen'>chosen movie title here</span></h2>");
+	$("#movieChosenDiv").show();
     $("#movieChosen").html(movies[name].title).css({"display": "block", "color": "white", "font-size": "150%"});
 
 //EMPTY MOVIE RESULTS IN ORDERT TO DISPLAY BOOKS

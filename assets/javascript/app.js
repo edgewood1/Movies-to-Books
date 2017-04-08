@@ -94,7 +94,7 @@ function movieCall() {
     console.log("searchURL call returns: " + searchURL + response);
 
 //CREATE MOVIE OBJECTS
-            
+  $("#movieResults").empty();          
 	for (i = 0; i < data.results.length; i++) {
 		name = data.results[i].title;
 
@@ -244,7 +244,7 @@ switch (genreToSearch) {
       break;
   default:
     bookSubject = genreChosen;
-}
+} //end of movie to book switch statements
  
 console.log("book subject for bookCall = " + bookSubject);
 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
@@ -270,11 +270,9 @@ $.ajax({
     $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
     $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
 
-      } // close for i
+      } // close for loop which populates books
    
-    });  // close ajax moviecall
-
-  // movieCall();
+    });  // close ajax call to google books
 
 } // close bookCall()
 

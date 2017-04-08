@@ -8,6 +8,7 @@
 		messagingSenderId: "28649429385"
 	};
 	firebase.initializeApp(config);
+	var database=firebase.database();
 
 //moviecall variables  
   var data;
@@ -113,6 +114,15 @@ function movieCall() {
 
             finalGenre = [];
 
+//read database for current database poster
+
+	database.ref().on("value", function(Snapshot) {
+
+// Log everything that's coming out of snapshot
+		console.log(Snapshot.val().name);
+		
+	});
+
 //clear books so that we can display movies
           
             // $("#bookResults").empty();
@@ -150,12 +160,20 @@ function movieCall() {
 }; //closes moviecall()
 
 function bookCall() {
-	
+
 	$("#bookResults").show();
 
 //GRAB THE MOVIE OBJECT CLICKED
     name=$(this).attr("id");
     console.log("movie = " +name);
+
+//DATABASE WRITE
+
+	database.ref().set({
+		name:movies[name].title,
+		date:movies[name].releaseDate,
+		posterPath:movies[name].posterPath
+	});
 
 //GRAB TEH GENRE FROM THE MOVIE OBJECT
     genreChosen=movies[name].genre;

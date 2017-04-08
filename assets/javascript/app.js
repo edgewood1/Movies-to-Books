@@ -12,7 +12,6 @@
 
 //moviecall variables  
   var data;
-  var url;
   var name;
   var genre = [];
   var name;
@@ -20,10 +19,10 @@
   var posterPath;
   var bookSubject;
   var genreObj =[];
-  var genreChosen=[];
+  var genreChosen;
   var genreToSearch;
   var releaseDate;
-  var a;
+  // var a;
   var movies={}; 
   var finalGenre = [];
 
@@ -77,12 +76,13 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
+    console.log("genreURL call returns: " + genreURL + response);
 
 // Getting all the genre stuff and creating an array
 	for (i = 0; i < data.genres.length; i++) {
-		var genreK = data.genres[i].id
-		var genreV = data.genres[i].name
-			genreObj[genreK] = genreV;
+		var genreKey = data.genres[i].id
+		var genreValue = data.genres[i].name
+			genreObj[genreKey] = genreValue;
 		}
 
 // CREATE AJAX call for movie data
@@ -91,6 +91,7 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
+    console.log("searchURL call returns: " + searchURL + response);
 
 //CREATE MOVIE OBJECTS
             
@@ -110,60 +111,47 @@ function movieCall() {
             
 //TRANSLATE GENRE ID'S
 
-            for (var j = 0; j < genres.length; j++) { 
+    for (var j = 0; j < genres.length; j++) { 
               
-              genres[j] = genres[j].toString();
-              finalGenre.push(genreObj[genres[j]]);             
-                  }
-            
+      genres[j] = genres[j].toString();
+      finalGenre.push(genreObj[genres[j]]);             
+    }
+             
 //ADD GENRE NAMES TO MOVIE OBJECT  
 
-            movies[name].genre= finalGenre;
+  movies[name].genre = finalGenre;
             
 //clear the finalGenre, which is used in genre translation process
 
-            finalGenre = [];
-
-//read database for current database poster
-
-	database.ref().on("value", function(Snapshot) {
-
-// Log everything that's coming out of snapshot
-		console.log(Snapshot.val().name);
-		
-	});
-
-//clear books so that we can display movies
-          
-            // $("#bookResults").empty();
+  finalGenre = [];
 
 /// display all movies except those without a poster path
 
-            if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w92null")) {
-                  var element2 = $("<div>").addClass("col-md-2");
-                  var element3 = $("<div>").addClass("hovereffect");
-                  var element4 = $("<img>").attr({"class":"img-thumbnail", 
-                      "src": movies[name].posterPath,
-                       "alt":"book cover",
-                       "id": name}).css({"width":"90%"}).on("click", bookCall);
-                  var element5 = $("<p>").text(movies[name].title).css("text-align", "center");
-                  var element6 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
-            
-                  $("#movieResults").append(element2);
-                  element2.append(element3);
-                  element2.append(element4);
-                  element2.append(element5);
-                  element2.append(element6);
-      
-              } //close the if-no-movie-poster display section
-      
-          } //close the for-i loop, which creates movie object and displays it.
-           
-       }); //closes ajax movie call 
+    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w92null")) {
+          var element2 = $("<div>").addClass("col-md-2 hovereffect");
+          var element3 = $("<img>").attr({
+            "class":"img-thumbnail", 
+            "src": movies[name].posterPath,
+            "alt":"book cover",
+            "id": name
+          }).css({"width":"90%"}).on("click", bookCall);
+          var element4 = $("<p>").text(movies[name].title).css("text-align", "center");
+          var element5 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
+    
+          $("#movieResults").append(element2);
+          element2.append(element3);
+          element2.append(element4);
+          element2.append(element5);
 
-    }); //closes ajax genre call
+      } //close the if-no-movie-poster display section
+
+  } //close the for-i loop, which creates movie object and displays it.
+   
+}); //closes ajax movie call 
+
+}); //closes ajax genre call
   
-  }); //closes submit button function event
+}); //closes submit button function event
 
 }; //closes moviecall()
 
@@ -172,44 +160,31 @@ function bookCall() {
 	$("#bookResults").show();
 
 //GRAB THE MOVIE OBJECT CLICKED
-    name=$(this).attr("id");
-    console.log("movie = " +name);
-
-//DATABASE WRITE
-	database.ref(movies[name].title).set({
-		name:movies[name].title,
-		date:movies[name].releaseDate,
-		posterPath:movies[name].posterPath
-	});
+  name=$(this).attr("id");
+  console.log("movie = " +name);
 
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
-	console.log("all genres = " + genreChosen);
+ //  console.log( typeof(movies[name].genre) + movies[name].genre);
+	// console.log("genreChosen = "+ typeof(genreChosen) + genreChosen);
+  console.log(movies);
 
-//GRAB THE FIRST GENRE LISTED
-	for (var k; k < genreChosen.length; k++) {
-		min = Math.ceil(0);
-		max = Math.floor(genreChosen.length-1);
-		var genreIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-		console.log(genreIndex);
-		genreToSearch = genreChosen[genreIndex];
-	}
-	console.log("first genre = " + genreToSearch);
+// //GRAB THE FIRST GENRE LISTED
+  genreToSearch = genreChosen[0];
+	console.log("genreToSearch = " + genreToSearch);
 
 //DISPLAY NAME OF CLICKED MOVIE ON DISPLAY
 	$("#movieChosenDiv").hide();
 	$("#movieChosenDiv").html("<h2>Your movie is: <br><span id='movieChosen'>chosen movie title here</span></h2>");
 	$("#movieChosenDiv").show();
-    $("#movieChosen").html(movies[name].title).css({"display": "block", "color": "white", "font-size": "150%"});
+  $("#movieChosen").html(movies[name].title).css({"display": "block", "color": "white", "font-size": "150%"});
 
 //EMPTY MOVIE RESULTS IN ORDERT TO DISPLAY BOOKS
    $("#movieResults").empty();
 
 // TRANSLATE GENRECHOSEN TO BOOKSUBJECT --&& WHAT IF NO GENRE??
 
-// If genreChosen = Action, then bookSubject = action;
-
-switch (genreChosen) {
+switch (genreToSearch) {
   case "Action":
     bookSubject = "action";
       break;
@@ -299,8 +274,25 @@ $.ajax({
    
     });  // close ajax moviecall
 
-  movieCall();
+  // movieCall();
 
-} // close bookCall() 
+} // close bookCall()
+
+
+//DATABASE WRITE
+  // database.ref(movies[name].title).set({
+  //   name:movies[name].title,
+  //   date:movies[name].releaseDate,
+  //   posterPath:movies[name].posterPath
+  // });
+
+//read database for current database poster
+
+  // database.ref().on("value", function(Snapshot) {
+
+// Log everything that's coming out of snapshot
+  // console.log(Snapshot.val().name);
+    
+  // }); 
 
 onPageLoad();

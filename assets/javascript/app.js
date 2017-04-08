@@ -157,8 +157,6 @@ function movieCall() {
 
 function bookCall() {
 
-	$("#bookResults").show();
-
 //GRAB THE MOVIE OBJECT CLICKED
   name=$(this).attr("id");
   console.log("movie = " +name);
@@ -255,25 +253,23 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
+ 
+    for (var i =0; i < 10; i++) {
+      $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+      $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+      $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+      //get year out of published date
+      var pubDateString = response.items[i].volumeInfo.publishedDate;
+      var yearOnly = pubDateString.slice(0,4);
 
-  for (var i =0; i < 10; i++) {
-    $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
-    $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-    $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-    //get year out of published date
-    var pubDateString = response.items[i].volumeInfo.publishedDate;
-    var yearOnly = pubDateString.slice(0,4);
-
-    $("#book" + (i+1) + "Year").html(yearOnly);
-    $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
-    $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
-    $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
-    $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
-
-      } // close for loop which populates books
-   
-    });  // close ajax call to google books
-
+      $("#book" + (i+1) + "Year").html(yearOnly);
+      $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
+      $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
+      $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
+      $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+    }// close for loop which populates books
+});  // close ajax call to google books
+$("#bookResults").show();
 } // close bookCall()
 
 

@@ -33,7 +33,6 @@ function onPageLoad() {
 	movieCall();
 }
 
-
 function movieCall() {
 
 //CLEARS THE MOVIE OBJECT FOR NEW USE  
@@ -168,9 +167,8 @@ function bookCall() {
     console.log("movie = " +name);
 
 //DATABASE WRITE
-
-	database.ref().set({
-		name:movies[name].title,
+	database.ref(movies[name].title).set({
+		name:movies[name].title
 		date:movies[name].releaseDate,
 		posterPath:movies[name].posterPath
 	});
@@ -290,4 +288,3 @@ $.ajax({
 } // close bookCall() 
 
 onPageLoad();
-

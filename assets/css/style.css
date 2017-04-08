@@ -36,7 +36,7 @@ h2 {
 	text-align: center;
 	text-shadow: 5px 2px 2px black;
 	color: #FFFD8D;	
-	margin: 20px;
+	margin: 20px 5px 5px 5px;
 }
 
 /* jumbotron */
@@ -56,6 +56,11 @@ h2 {
 	margin-left: 25%;
 	margin-right: 25%;
 	padding: 10px 20px;
+	min-width: 100px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #1a6f8f;
+	border-radius: 5px;
 }
 
 .btn {
@@ -94,6 +99,12 @@ h2 {
 #bookResults img {
 	border: 2px #FFFD8D solid;
 	margin: 5px;
+}
+
+#clickOnBook {
+	text-align: center;
+	font-size: 25px;
+	margin: 0px 5px 30px 5px;
 }
 
 #bookResults h5,p {	

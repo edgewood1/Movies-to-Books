@@ -188,21 +188,18 @@ function movieCall() {
 function bookCall() {
 
 //GRAB THE MOVIE OBJECT CLICKED
-  name=$(this).attr("id");
-  console.log("movie = " +name);
+  name = $(this).attr("id");
+  console.log("movie = " + name);
 
   // counter ++;
   // console.log(counter);
 
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
- //  console.log( typeof(movies[name].genre) + movies[name].genre);
-	// console.log("genreChosen = "+ typeof(genreChosen) + genreChosen);
-  console.log(movies);
 
 // //GRAB THE FIRST GENRE LISTED
   genreToSearch = genreChosen[0];
-	console.log("genreToSearch = " + genreToSearch);
+	console.log("genreToSearch = " + typeof(genreToSearch) + genreToSearch);
 
 //DISPLAY NAME OF CLICKED MOVIE ON DISPLAY
 	$("#movieChosenDiv").hide();
@@ -223,7 +220,7 @@ switch (genreToSearch) {
     bookSubject = "adventure";
       break;
   case "Animation":
-    bookSubject = "comics||animation||graphic novel";
+    bookSubject = "graphic novel||animation";
       break;
   case "Comedy":
     bookSubject = "humor";
@@ -238,7 +235,7 @@ switch (genreToSearch) {
     bookSubject = "melodrama";
       break;
   case "Family":
-    bookSubject = "juvenile fiction";
+    bookSubject = "animals";
       break;
   case "Fantasy":
     bookSubject = "fantasy";
@@ -302,6 +299,7 @@ $.ajax({
       $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
     }// close for loop which populates books
 });  // close ajax call to google books
+
 $("#bookResults").show();
 
 // I removed the "database.ref(movies[name].title)" here because any movie with certain 

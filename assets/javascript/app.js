@@ -15,6 +15,7 @@
   var name;
   var genre = [];
   var name;
+  var term;
   var popularity;
   var posterPath;
   var bookSubject;
@@ -22,14 +23,39 @@
   var genreChosen;
   var genreToSearch;
   var releaseDate;
-  // var a;
   var movies={}; 
   var finalGenre = [];
+  var lastFivePosters = [];
+
+// This counter can't be set at zero or it will reset every time the
+// page is loaded. Probably needs to be modeled after the Coders Bay thing
+// for it to work properly? Switching back to the other way of populating
+// these images for now..
+  // var counter = 0;
 
 function onPageLoad() {
 	$("#movieChosenDiv").hide();
 	$("#bookResults").hide();
 	$("#movieResults").hide();
+
+// This gets tricky. Console logs are simple. Returning information to HTML.. not so much.
+// I've tried pushing to an array and it only works on the second opening of the dev tools (the
+// first opening of dev tools shows an empty array). I can push images to a div, but this limit
+// to last functions a bit like a for loop
+database.ref().orderByKey().limitToLast(5).
+  on("child_added", function(snapshot) {
+
+    //make sure that there's something in the database if you're going to read it 
+    var exists = snapshot.exists();
+      if (exists) {
+        var data = snapshot.val();
+        lastFivePosters.push(data);
+        // This only kind of works for index 0 but it makes the array into an object and if you
+        // try to get the information from any other index (e.g. [1]), it throws an error.
+        console.log(lastFivePosters[0].movieChosenPoster);
+      }
+    });
+
 	movieCall();
 }
 
@@ -46,7 +72,7 @@ function movieCall() {
 		event.preventDefault();
 
 		// Set variable term equal to search input
-		var term = $("#movieTitle").val().trim();
+		term = $("#movieTitle").val().trim();
 
 		// Clears search box input
 		$("#movieTitle").val("");
@@ -59,6 +85,10 @@ function movieCall() {
 
 		// Shows movieChosenDiv (it is hidden on page load)
 		$("#movieChosenDiv").show();
+
+    // Hides bookResults div when movies populate (imperative to do this after
+    // first search, otherwise bookResults div will stay visible beneath movieResults div)
+    $("#bookResults").hide();
 
 //AJAX VARIABLES
 
@@ -160,6 +190,9 @@ function bookCall() {
 //GRAB THE MOVIE OBJECT CLICKED
   name=$(this).attr("id");
   console.log("movie = " +name);
+
+  // counter ++;
+  // console.log(counter);
 
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
@@ -270,6 +303,18 @@ $.ajax({
     }// close for loop which populates books
 });  // close ajax call to google books
 $("#bookResults").show();
+
+// I removed the "database.ref(movies[name].title)" here because any movie with certain 
+// punctuation in it (e.g. E.T.) breaks the code
+  database.ref().push({
+    searchTerm: term,
+    movieChosenTitle: movies[name].title,
+    movieChosenYear: movies[name].releaseDate,
+    movieChosenPoster: movies[name].posterPath,
+    // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
 } // close bookCall()
 
 

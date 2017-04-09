@@ -52,7 +52,7 @@ database.ref().orderByKey().limitToLast(5).
         lastFivePosters.push(data);
         // This only kind of works for index 0 but it makes the array into an object and if you
         // try to get the information from any other index (e.g. [1]), it throws an error.
-        console.log(lastFivePosters[0].movieChosen);
+        console.log(lastFivePosters[0].movieChosenPoster);
       }
     });
 

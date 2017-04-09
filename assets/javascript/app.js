@@ -191,8 +191,8 @@ function bookCall() {
   name=$(this).attr("id");
   console.log("movie = " +name);
 
-  counter ++;
-  console.log(counter);
+  // counter ++;
+  // console.log(counter);
 
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;

@@ -26,6 +26,7 @@
   var movies={}; 
   var finalGenre = [];
   var lastFivePosters = [];
+  var counter = 0;
 
 function onPageLoad() {
 	$("#movieChosenDiv").hide();
@@ -36,12 +37,12 @@ function onPageLoad() {
 // I've tried pushing to an array and it only works on the second opening of the dev tools (the
 // first opening of dev tools shows an empty array). I can push images to a div, but this limit
 // to last functions a bit like a for loop
-database.ref().orderByKey().limitToLast(5).
+database.ref().orderByKey().limitToLast(1).
   on("child_added", function(snapshot) {
         // $(".carousel-inner").empty();
         // $(".d-block").attr("src", snapshot.val().movieChosenPoster);
         // $("#recentSearches").append('<img src="' + snapshot.val().movieChosenPoster + '">');
-    console.log(snapshot.val().movieChosenPoster);
+    console.log(snapshot.val().counter);
     // lastFivePosters.push(snapshot.val());
 // console.log(lastFivePosters);
   });
@@ -182,6 +183,9 @@ function bookCall() {
   name=$(this).attr("id");
   console.log("movie = " +name);
 
+  counter ++;
+  console.log(counter);
+
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
  //  console.log( typeof(movies[name].genre) + movies[name].genre);
@@ -294,11 +298,12 @@ $("#bookResults").show();
 
 // I removed the "database.ref(movies[name].title)" here because any movie with certain 
 // punctuation in it (e.g. E.T.) breaks the code
-  database.ref().push({
+  database.ref(counter).set({
     searchTerm: term,
     movieChosenTitle: movies[name].title,
     movieChosenYear: movies[name].releaseDate,
     movieChosenPoster: movies[name].posterPath,
+    counter: counter,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
 

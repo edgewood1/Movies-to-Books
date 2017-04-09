@@ -1,5 +1,4 @@
 body {
-
 	margin: 0 auto;
 	font-family: "Special Elite", serif;
 	background-color: #2290BA;
@@ -61,6 +60,7 @@ h2 {
 	border-width: 1px;
 	border-color: #1a6f8f;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .btn {

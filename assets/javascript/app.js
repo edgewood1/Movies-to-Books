@@ -26,7 +26,12 @@
   var movies={}; 
   var finalGenre = [];
   var lastFivePosters = [];
-  var counter = 0;
+
+// This counter can't be set at zero or it will reset every time the
+// page is loaded. Probably needs to be modeled after the Coders Bay thing
+// for it to work properly? Switching back to the other way of populating
+// these images for now..
+  // var counter = 0;
 
 function onPageLoad() {
 	$("#movieChosenDiv").hide();
@@ -37,16 +42,19 @@ function onPageLoad() {
 // I've tried pushing to an array and it only works on the second opening of the dev tools (the
 // first opening of dev tools shows an empty array). I can push images to a div, but this limit
 // to last functions a bit like a for loop
-database.ref().orderByKey().limitToLast(1).
+database.ref().orderByKey().limitToLast(5).
   on("child_added", function(snapshot) {
-        // $(".carousel-inner").empty();
-        // $(".d-block").attr("src", snapshot.val().movieChosenPoster);
-        // $("#recentSearches").append('<img src="' + snapshot.val().movieChosenPoster + '">');
-    console.log(snapshot.val().counter);
-    // lastFivePosters.push(snapshot.val());
-// console.log(lastFivePosters);
-  });
-// console.log(lastFivePosters);
+
+    //make sure that there's something in the database if you're going to read it 
+    var exists = snapshot.exists();
+      if (exists) {
+        var data = snapshot.val();
+        lastFivePosters.push(data);
+        // This only kind of works for index 0 but it makes the array into an object and if you
+        // try to get the information from any other index (e.g. [1]), it throws an error.
+        console.log(lastFivePosters[0].movieChosen);
+      }
+    });
 
 	movieCall();
 }
@@ -298,12 +306,12 @@ $("#bookResults").show();
 
 // I removed the "database.ref(movies[name].title)" here because any movie with certain 
 // punctuation in it (e.g. E.T.) breaks the code
-  database.ref(counter).set({
+  database.ref().push({
     searchTerm: term,
     movieChosenTitle: movies[name].title,
     movieChosenYear: movies[name].releaseDate,
     movieChosenPoster: movies[name].posterPath,
-    counter: counter,
+    // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
 

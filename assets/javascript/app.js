@@ -15,6 +15,7 @@
   var name;
   var genre = [];
   var name;
+  var term;
   var popularity;
   var posterPath;
   var bookSubject;
@@ -22,14 +23,30 @@
   var genreChosen;
   var genreToSearch;
   var releaseDate;
-  // var a;
   var movies={}; 
   var finalGenre = [];
+  var lastFivePosters = [];
 
 function onPageLoad() {
 	$("#movieChosenDiv").hide();
 	$("#bookResults").hide();
 	$("#movieResults").hide();
+
+// This gets tricky. Console logs are simple. Returning information to HTML.. not so much.
+// I've tried pushing to an array and it only works on the second opening of the dev tools (the
+// first opening of dev tools shows an empty array). I can push images to a div, but this limit
+// to last functions a bit like a for loop
+database.ref().orderByKey().limitToLast(5).
+  on("child_added", function(snapshot) {
+        // $(".carousel-inner").empty();
+        // $(".d-block").attr("src", snapshot.val().movieChosenPoster);
+        // $("#recentSearches").append('<img src="' + snapshot.val().movieChosenPoster + '">');
+    console.log(snapshot.val().movieChosenPoster);
+    // lastFivePosters.push(snapshot.val());
+// console.log(lastFivePosters);
+  });
+// console.log(lastFivePosters);
+
 	movieCall();
 }
 
@@ -46,7 +63,7 @@ function movieCall() {
 		event.preventDefault();
 
 		// Set variable term equal to search input
-		var term = $("#movieTitle").val().trim();
+		term = $("#movieTitle").val().trim();
 
 		// Clears search box input
 		$("#movieTitle").val("");
@@ -59,6 +76,10 @@ function movieCall() {
 
 		// Shows movieChosenDiv (it is hidden on page load)
 		$("#movieChosenDiv").show();
+
+    // Hides bookResults div when movies populate (imperative to do this after
+    // first search, otherwise bookResults div will stay visible beneath movieResults div)
+    $("#bookResults").hide();
 
 //AJAX VARIABLES
 
@@ -270,6 +291,17 @@ $.ajax({
     }// close for loop which populates books
 });  // close ajax call to google books
 $("#bookResults").show();
+
+// I removed the "database.ref(movies[name].title)" here because any movie with certain 
+// punctuation in it (e.g. E.T.) breaks the code
+  database.ref().push({
+    searchTerm: term,
+    movieChosenTitle: movies[name].title,
+    movieChosenYear: movies[name].releaseDate,
+    movieChosenPoster: movies[name].posterPath,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
 } // close bookCall()
 
 

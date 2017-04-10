@@ -113,9 +113,17 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
+    console.log("response from search AJAX call: " + response);
+    console.log("data variable: " + data);
+    console.log("data.results[0]: " + data.results[0]);
 
 //CREATE MOVIE OBJECTS
-  $("#movieResults").empty();          
+  $("#movieResults").empty(); 
+  if (data.results.length === 0) {
+    $("#movieChosenDiv").html("We're sorry. Your search did not return any results.<br>Check your spelling or try another movie title.")
+    .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
+  } 
+     
 	for (i = 0; i < data.results.length; i++) {
 		name = data.results[i].title;
 
@@ -156,8 +164,10 @@ function movieCall() {
             "alt":"book cover",
             "id": name
           }).css({"width":"90%"}).on("click", bookCall);
-          var element4 = $("<p>").text(movies[name].title).css("text-align", "center");
-          var element5 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
+          var element4 = $("<p>").text(movies[name].title)
+          .css("text-align", "center");
+          var element5 = $("<p>").text(movies[name].releaseDate)
+          .css("text-align", "center");
     
           $("#movieResults").append(element2);
           element2.append(element3);
@@ -167,7 +177,7 @@ function movieCall() {
       } //close the if-no-movie-poster display section
 
   } //close the for-i loop, which creates movie object and displays it.
-   
+
 }); //closes ajax movie call 
 
 }); //closes ajax genre call
@@ -203,8 +213,8 @@ function bookCall() {
 
 switch (genreToSearch) {
   case undefined:
-    $("#movieChosen").html("The Movie Database does not have enough information on this movie.<br>Try to search for a similar movie title.")
-    .css({"display": "block", "color": "white", "font-size": "90%"});
+    $("#movieChosenDiv").html("We're Sorry. The Movie Database does not have enough information on this movie.<br>Try to search for a similar movie title.")
+    .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
     break;
   case "Action":
     bookSubject = "action";

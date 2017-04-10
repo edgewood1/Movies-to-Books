@@ -6,39 +6,38 @@
 
 	<title>Would You Like A Book With That Movie?</title>
 
- <!-- bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+ <!-- Bootstrap Links -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-	<!-- Firebase  -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
 
-  <!--stretchy js link to add stretchiness to input-->
+  <!-- Stretchy JS Link (to add stretchiness to input box) -->
   <script src="assets/javascript/stretchy.js" async></script>
 
-  <!-- granim for gradient background -->
+  <!-- Granim.JS Link (for gradient background) -->
   <script src="assets/javascript/granim.min.js"></script>
 
   <!-- Google Fonts Link -->
   <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
-  <!-- Favicon Link -->
+  <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/tinybook.jpeg">
   
   <!-- Mobile Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- CSS -->
+  <!-- CSS Reference -->
 	<link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/style-responsive.css">
 
 </head>
 
 <body>
 
-<!--set gradient background on body-->
+<!-- Set gradient background on body -->
   <canvas id="canvas-background"></canvas>
 
 	<header>
@@ -63,24 +62,24 @@
     		</div>
 
 		</div> <!--end of jumbotron-->
+
 	</header>
 
-
-<div class="container" id="wrap"> <!--leave this under header to keep sticky footer in place-->
+<div class="container" id="wrap"> <!--leave this under header/at top of page to keep sticky footer in place-->
 
 <!-- Movie Results will display here-->
-
   <div class="row" id="movieResults">
   </div>
 
 <!--Book Results will display here-->
-
 	<div id="bookResults">
 
 		<h2>Try One of These!</h2>
-    <h4 id="clickOnBook">(Click on a book for more info)</h4>
+      <h4 id="clickOnBook">
+        (Click on a book for more info)
+      </h4>
 
-		<div class="row"  id="row1">
+		<div class="row" id="row1">
 
 <!--book1-->
 			<div class="offset-md-1 col-md-2"> 
@@ -120,7 +119,6 @@
   					</div> 
 				</div> <!--end of modal1-->
 			</div> 
-
 <!--end of book1-->
 
 <!--book2-->
@@ -492,10 +490,12 @@
 
 	</div> <!--end of book result -->
 
-
+  <!-- Begin Recent Search div -->
 	<div id="recentSearches">
 
-    <h2 id="recent-search-text">Recent Movies Searched</h2>
+    <h2 id="recent-search-text">
+      Recent Movies Searched
+    </h2>
 
 		<div class="row">
 
@@ -506,16 +506,20 @@
 		</div> <!--end of carousel row div-->
 	</div><!--end of recentSearches div-->
 
-  <!-- End of container #wrap -->
+  <!-- End of page container #wrap -->
   </div>
 
+  <!-- Begin Footer -->
 	<footer id="footer">
-		<p>Created by the AppleSauce Collaborative 2017 with content from Google Books API and  <img src="assets/images/tmdb logo.png" height="30" width="30" alt="TMDB logo"> API</p>
+
+		<p>Created by the <a href="https://github.com/Applesauce-Collaborative" target="_blank">Applesauce Collaborative</a> 2017 with content from <a href="https://developers.google.com/books/" target="_blank">Google Books API</a> and <a href="https://www.themoviedb.org/documentation/api" target="_blank"><img src="assets/images/tmdb logo.png" height="30" width="30" alt="TMDB logo"> API</a></p>
+
+  <!-- End Footer -->
 	</footer>
 
-<!-- jQuery -->	
+<!-- jQuery Link --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!--our scripts-->
+<!-- JS Reference(s) -->
 <script src="assets/javascript/app.js"></script>
 <script src="assets/javascript/display.js"></script>
 </body>

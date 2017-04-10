@@ -22,7 +22,7 @@
 /* Width at 640px (Cell Phone) and below */
 @media screen and (max-width: 640px) {
 
-#row1, #row2 {
+#row1, #row2, #movieResults {
 	display: inline;
 	text-align: center;
 }

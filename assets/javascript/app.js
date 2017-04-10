@@ -125,9 +125,7 @@ function movieCall() {
 
 		movies[name] ={
 			"title": name, 
-			"posterPath": "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
-      // Using this one for higher-quality images. Important on mobile-responsive page.
-      "largePosterPath": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path, 
+			"posterPath": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path, 
 			"releaseDate": yearOnly
 		};
 
@@ -151,13 +149,11 @@ function movieCall() {
 
 /// display all movies except those without a poster path
 
-    if (!(movies[name].largePosterPath=="https://image.tmdb.org/t/p/w500null")) {
+    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
           var element2 = $("<div>").addClass("col-md-2 hovereffect");
           var element3 = $("<img>").attr({
             "class":"img-thumbnail", 
-            // Please leave this as largePosterPath. Improves resolution (especially important for
-            // mobile-responsive page)
-            "src": movies[name].largePosterPath,
+            "src": movies[name].posterPath,
             "alt":"book cover",
             "id": name
           }).css({"width":"90%"}).on("click", bookCall);
@@ -303,28 +299,11 @@ $("#most-recent-posters").empty();
     searchTerm: term,
     movieChosenTitle: movies[name].title,
     movieChosenYear: movies[name].releaseDate,
-    movieChosenPoster: movies[name].largePosterPath,
+    movieChosenPoster: movies[name].posterPath,
     // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
 
 } // close bookCall()
-
-
-//DATABASE WRITE
-  // database.ref(movies[name].title).set({
-  //   name:movies[name].title,
-  //   date:movies[name].releaseDate,
-  //   posterPath:movies[name].posterPath
-  // });
-
-//read database for current database poster
-
-  // database.ref().on("value", function(Snapshot) {
-
-// Log everything that's coming out of snapshot
-  // console.log(Snapshot.val().name);
-    
-  // }); 
 
 onPageLoad();

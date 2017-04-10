@@ -21,6 +21,8 @@
 /*-----------------------------------------------------------------*/
 /* Width at 640px (Cell Phone) and below */
 @media screen and (max-width: 640px) {
-.img-thumbnail {
-	
+
+#row1, #row2 {
+	display: inline;
+	text-align: center;
 }

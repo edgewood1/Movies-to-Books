@@ -36,28 +36,20 @@
 function onPageLoad() {
 	$("#movieChosenDiv").hide();
 	$("#bookResults").hide();
-	$("#movieResults").hide();
+  $("#movieResults").hide();
 
-// This gets tricky. Console logs are simple. Returning information to HTML.. not so much.
-// I've tried pushing to an array and it only works on the second opening of the dev tools (the
-// first opening of dev tools shows an empty array). I can push images to a div, but this limit
-// to last functions a bit like a for loop
-database.ref().orderByKey().limitToLast(5).
+	movieCall();
+  $("#most-recent-posters").empty();
+}
+
+database.ref().orderByKey().limitToLast(3).
   on("child_added", function(snapshot) {
-
     //make sure that there's something in the database if you're going to read it 
     var exists = snapshot.exists();
       if (exists) {
-        var data = snapshot.val();
-        lastFivePosters.push(data);
-        // This only kind of works for index 0 but it makes the array into an object and if you
-        // try to get the information from any other index (e.g. [1]), it throws an error.
-        console.log(lastFivePosters[0].movieChosenPoster);
+        $("#most-recent-posters").append('<img class="img-fluid img-thumbnail recentPosters" src="' + snapshot.val().movieChosenPoster + '" alt="Recent Movies">');
       }
-    });
-
-	movieCall();
-}
+  });
 
 function movieCall() {
 
@@ -195,9 +187,6 @@ function bookCall() {
   name = $(this).attr("id");
   console.log("movie = " + name);
 
-  // counter ++;
-  // console.log(counter);
-
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
 
@@ -305,6 +294,8 @@ $.ajax({
 });  // close ajax call to google books
 
 $("#bookResults").show();
+
+$("#most-recent-posters").empty();
 
 // I removed the "database.ref(movies[name].title)" here because any movie with certain 
 // punctuation in it (e.g. E.T.) breaks the code

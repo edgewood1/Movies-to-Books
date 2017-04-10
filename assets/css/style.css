@@ -102,6 +102,7 @@ h2 {
 }
 
 #clickOnBook {
+	font-family: "Special Elite", serif;
 	text-align: center;
 	font-size: 25px;
 	margin: 0px 5px 30px 5px;
@@ -134,9 +135,14 @@ h2 {
 	margin: 20px;
 }
 
-#recentMovieDisplay img {
-	margin: 0 auto;		
-	border: 2px #FFFD8D solid;
+.recentPosters {
+	width: 150px;
+	margin: 20px;
+}
+
+#most-recent-posters {
+	display: inline;
+	text-align: center;
 }
 
 /* footer */

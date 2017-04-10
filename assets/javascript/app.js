@@ -297,6 +297,7 @@ $.ajax({
       $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
       $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
       $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+      
     }// close for loop which populates books
 });  // close ajax call to google books
 

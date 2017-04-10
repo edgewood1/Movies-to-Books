@@ -133,7 +133,9 @@ function movieCall() {
 
 		movies[name] ={
 			"title": name, 
-			"posterPath" : "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
+			"posterPath": "https://image.tmdb.org/t/p/w92" + data.results[i].poster_path, 
+      // Using this one for higher-quality images. Important on mobile-responsive page.
+      "largePosterPath": "https://image.tmdb.org/t/p/w500" + data.results[i].poster_path, 
 			"releaseDate": yearOnly
 		};
 
@@ -157,11 +159,13 @@ function movieCall() {
 
 /// display all movies except those without a poster path
 
-    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w92null")) {
+    if (!(movies[name].largePosterPath=="https://image.tmdb.org/t/p/w500null")) {
           var element2 = $("<div>").addClass("col-md-2 hovereffect");
           var element3 = $("<img>").attr({
             "class":"img-thumbnail", 
-            "src": movies[name].posterPath,
+            // Please leave this as largePosterPath. Improves resolution (especially important for
+            // mobile-responsive page)
+            "src": movies[name].largePosterPath,
             "alt":"book cover",
             "id": name
           }).css({"width":"90%"}).on("click", bookCall);
@@ -308,7 +312,7 @@ $("#bookResults").show();
     searchTerm: term,
     movieChosenTitle: movies[name].title,
     movieChosenYear: movies[name].releaseDate,
-    movieChosenPoster: movies[name].posterPath,
+    movieChosenPoster: movies[name].largePosterPath,
     // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });

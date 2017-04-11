@@ -26,6 +26,7 @@
   var movies={}; 
   var finalGenre = [];
   var lastFivePosters = [];
+  var random;
 
 // This counter can't be set at zero or it will reset every time the
 // page is loaded. Probably needs to be modeled after the Coders Bay thing
@@ -155,8 +156,8 @@ function movieCall() {
   finalGenre = [];
 
 /// display all movies except those without a poster path
-
-    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
+    // if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
+    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null") && !(movies[name].genre.length==0)) {
           var element2 = $("<div>").addClass("col-md-2 hovereffect");
           var element3 = $("<img>").attr({
             "class":"img-thumbnail", 
@@ -195,8 +196,11 @@ function bookCall() {
 //GRAB THE GENRES FROM THE MOVIE OBJECT
 	genreChosen = movies[name].genre;
 
-// //GRAB THE FIRST GENRE LISTED
-  genreToSearch = genreChosen[0];
+//GRAB random GENRE from those listed
+  random = Math.floor((Math.random() * genreChosen.length));
+  console.log("random number genre chosen is: " + genreChosen[random]);
+  genreToSearch = genreChosen[random];
+  
 	console.log("genreToSearch = " + typeof(genreToSearch) + genreToSearch);
 
 //DISPLAY NAME OF CLICKED MOVIE ON DISPLAY
@@ -286,6 +290,7 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
+
   
   if (response.items === undefined) {
     $("#bookResults").hide();

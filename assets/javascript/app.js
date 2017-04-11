@@ -297,49 +297,57 @@ $.ajax({
 }).done(function(response) {
 
   console.log(response);
-  var randomUsed = [];
-    for (var i =1; i <= 10; i++) {
-      var random = Math.floor((Math.random() * response.items.length));
-      console.log("random for books: " + random);
-      
-      while (randomUsed.indexOf(random) != -1) {
-        random = Math.floor((Math.random() * response.items.length));
-      };
-         
+  var indexUsed = [];
 
-      randomUsed.push(random);
-      console.log("randomUsed: " + randomUsed);
+  for (var i =1; i <= 10; i++) {
 
-      var bookDisplayed = $("<img>")
-      .attr("data-toggle" , "modal")
-      .attr("data-target" , "#moreInfo" + (i))
-      .attr("src", response.items[random].volumeInfo.imageLinks.thumbnail)
-      .attr("alt:" ,response.items[random].volumeInfo.title)
-      .addClass("img-thumbnail");
-      var bookDisplayedTitle = $("<h5>")
-      .html(response.items[random].volumeInfo.title);
+    var randomIndex = Math.floor(Math.random() * response.items.length);
+    console.log("random for books: " + randomIndex);
 
-       
-      //get year out of published date
-      var pubDateString = response.items[random].volumeInfo.publishedDate;
-      var yearOnly = pubDateString.slice(0,4);
-      var bookDisplayedYear = $("<p>")
-      .html(yearOnly);
+    //if randomIndex has not already been used do this
+    if (indexUsed.indexOf(randomIndex) === -1) {
+      indexUsed.push(randomIndex);
+      console.log("indexUsed:" + indexUsed);
+    }// end of if new random index
 
-      
-      $("#book" + (i)).append(bookDisplayed);
-      $("#book" + (i)).append(bookDisplayedTitle);
-      $("#book" + (i)).append(bookDisplayedYear);
+    //else - if randomIndex has been used, get a new random index
+    else {
+      // keep getting randomIndex until it is not a match
+      while (indexUsed.indexOf(randomIndex) !== -1){
+        randomIndex = Math.floor(Math.random() * response.items.length);
+      }// end of while randomIndex has already been used  
 
-      $("#modal" + (i) + "Title").html(response.items[random].volumeInfo.title);
-      $("#book" + (i) + "Year").html(yearOnly);
-      $("#book" + (i) + "Author").html(response.items[random].volumeInfo.authors);
-      $("#book" + (i) + "Info").html(response.items[random].volumeInfo.description);
-      $("#book" + (i) + "PageCount").html(response.items[random].volumeInfo.pageCount);
-      $("#book" + (i) + "PreviewLink").attr("href", response.items[random].volumeInfo.previewLink);
+      console.log("randomIndex 2nd time:" + randomIndex);
+      console.log("indexUsed 2nd time:" + indexUsed);  
+    } // end of else randomIndex has been used  
+    
+    var bookDisplayed = $("<img>")
+    .attr("data-toggle" , "modal")
+    .attr("data-target" , "#moreInfo" + (i))
+    .attr("src", response.items[randomIndex].volumeInfo.imageLinks.thumbnail)
+    .attr("alt:" ,response.items[randomIndex].volumeInfo.title)
+    .addClass("img-thumbnail");
+    var bookDisplayedTitle = $("<h5>")
+    .html(response.items[randomIndex].volumeInfo.title);
+   
+    //get year out of published date
+    var pubDateString = response.items[randomIndex].volumeInfo.publishedDate;
+    var yearOnly = pubDateString.slice(0,4);
+    var bookDisplayedYear = $("<p>")
+    .html(yearOnly);
+    
+    $("#book" + (i)).append(bookDisplayed);
+    $("#book" + (i)).append(bookDisplayedTitle);
+    $("#book" + (i)).append(bookDisplayedYear);
+
+    $("#modal" + (i) + "Title").html(response.items[randomIndex].volumeInfo.title);
+    $("#book" + (i) + "Year").html(yearOnly);
+    $("#book" + (i) + "Author").html(response.items[randomIndex].volumeInfo.authors);
+    $("#book" + (i) + "Info").html(response.items[randomIndex].volumeInfo.description);
+    $("#book" + (i) + "PageCount").html(response.items[randomIndex].volumeInfo.pageCount);
+    $("#book" + (i) + "PreviewLink").attr("href", response.items[randomIndex].volumeInfo.previewLink);
 
     };// close for loop which populates books
-  
 
 });  // close ajax call to google books
 

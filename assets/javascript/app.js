@@ -157,7 +157,7 @@ function movieCall() {
 
 /// display all movies except those without a poster path
     // if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
-    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null") && !(movies[name].genre.length==0)) {
+    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
           var element2 = $("<div>").addClass("col-md-2 hovereffect");
           var element3 = $("<img>").attr({
             "class":"img-thumbnail", 
@@ -358,7 +358,8 @@ $("#most-recent-posters").empty();
     // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
-} // end of else - if genre of movie is defined
+} // end of else - if genre of movie is defined // this also keep undefined genres from being pushed to firebase
+
 } // close bookCall()
 
 onPageLoad();

@@ -114,9 +114,9 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
-    console.log("response from search AJAX call: " + response);
-    console.log("data variable: " + data);
-    console.log("data.results[0]: " + data.results[0]);
+    // console.log("response from search AJAX call: " + response);
+    // console.log("data variable: " + data);
+    // console.log("data.results[0]: " + data.results[0]);
 
 //CREATE MOVIE OBJECTS
   $("#movieResults").empty(); 
@@ -157,7 +157,7 @@ function movieCall() {
 
 /// display all movies except those without a poster path
     // if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
-    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null") && !(movies[name].genre.length==0)) {
+    if (!(movies[name].posterPath=="https://image.tmdb.org/t/p/w500null")) {
           var element2 = $("<div>").addClass("col-md-2 hovereffect");
           var element3 = $("<img>").attr({
             "class":"img-thumbnail", 
@@ -213,13 +213,18 @@ function bookCall() {
 //EMPTY MOVIE RESULTS IN ORDERT TO DISPLAY BOOKS
    $("#movieResults").empty();
 
-// TRANSLATE GENRECHOSEN TO BOOKSUBJECT --&& WHAT IF NO GENRE??
+//if movie genre is undefined   
 
-switch (genreToSearch) {
-  case undefined:
+if (genreToSearch === undefined) {
     $("#movieChosenDiv").html("We're Sorry. The Movie Database does not have enough information on this movie.<br>Try to search for a similar movie title.")
     .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
-    break;
+    $("#bookResults").hide();
+    }
+//if movie genre is defined
+ else {  
+
+// TRANSLATE GENRECHOSEN TO BOOKSUBJECT 
+switch (genreToSearch) {
   case "Action":
     bookSubject = "action";
       break;
@@ -254,7 +259,7 @@ switch (genreToSearch) {
     bookSubject = "horror";
       break;
   case "Music":
-    bookSubject = movieSubject;
+    bookSubject = "music";
       break;
   case "Mystery":
     bookSubject = "mystery";
@@ -278,9 +283,9 @@ switch (genreToSearch) {
     bookSubject = "western";
       break;
   default:
-    bookSubject = genreChosen;
+    bookSubject.toLowerCase() = genreChosen;
 } //end of movie to book switch statements
- 
+
 console.log("book subject for bookCall = " + bookSubject);
 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
 
@@ -291,50 +296,63 @@ $.ajax({
   method: "GET"
 }).done(function(response) {
 
-  
-  if (response.items === undefined) {
-    $("#bookResults").hide();
-  }
-  
-  else {
+  console.log(response);
+  var indexUsed = [];
 
-    for (var i =0; i < 10; i++) {
-      var bookDisplayed = $("<img>")
-      .attr("data-toggle" , "modal")
-      .attr("data-target" , "#moreInfo" + (i + 1))
-      .attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
-      .attr("alt:" ,response.items[i].volumeInfo.title)
-      .addClass("img-thumbnail");
-      var bookDisplayedTitle = $("<h5>")
-      .html(response.items[i].volumeInfo.title);
+  for (var i =1; i <= 10; i++) {
 
-       
-      //get year out of published date
-      var pubDateString = response.items[i].volumeInfo.publishedDate;
-      var yearOnly = pubDateString.slice(0,4);
-      var bookDisplayedYear = $("<p>")
-      .html(yearOnly);
+    var randomIndex = Math.floor(Math.random() * response.items.length);
+    console.log("random for books: " + randomIndex);
 
-      
-      $("#book" + (i+1)).append(bookDisplayed);
-      $("#book" + (i+1)).append(bookDisplayedTitle);
-      $("#book" + (i+1)).append(bookDisplayedYear);
+    //if randomIndex has not already been used do this
+    if (indexUsed.indexOf(randomIndex) === -1 && response.items[randomIndex] !== undefined) {
+      indexUsed.push(randomIndex);
+      console.log("indexUsed:" + indexUsed);
+    }// end of if new random index
 
-      $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-      $("#book" + (i+1) + "Year").html(yearOnly);
-      $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
-      $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
-      $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
-      $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
-     
-    }// close for loop which populates books
+    //else - if randomIndex has been used, get a new random index
+    else {
+      // keep getting randomIndex until it is not a match
+      while (indexUsed.indexOf(randomIndex) !== -1){
+        randomIndex = Math.floor(Math.random() * response.items.length);
+      }// end of while randomIndex has already been used  
 
-  }// end of else- if response returns info then loop through and display
+      console.log("randomIndex 2nd time:" + randomIndex);
+      console.log("indexUsed 2nd time:" + indexUsed);  
+    } // end of else randomIndex has been used  
+    
+    var bookDisplayed = $("<img>")
+    .attr("data-toggle" , "modal")
+    .attr("data-target" , "#moreInfo" + (i))
+    .attr("src", response.items[randomIndex].volumeInfo.imageLinks.thumbnail)
+    .attr("alt:" ,response.items[randomIndex].volumeInfo.title)
+    .addClass("img-thumbnail");
+    var bookDisplayedTitle = $("<h5>")
+    .html(response.items[randomIndex].volumeInfo.title);
+   
+    //get year out of published date
+    var pubDateString = response.items[randomIndex].volumeInfo.publishedDate;
+    var yearOnly = pubDateString.slice(0,4);
+    var bookDisplayedYear = $("<p>")
+    .html(yearOnly);
+    
+    $("#book" + (i)).append(bookDisplayed);
+    $("#book" + (i)).append(bookDisplayedTitle);
+    $("#book" + (i)).append(bookDisplayedYear);
+
+    $("#modal" + (i) + "Title").html(response.items[randomIndex].volumeInfo.title);
+    $("#book" + (i) + "Year").html(yearOnly);
+    $("#book" + (i) + "Author").html(response.items[randomIndex].volumeInfo.authors);
+    $("#book" + (i) + "Info").html(response.items[randomIndex].volumeInfo.description);
+    $("#book" + (i) + "PageCount").html(response.items[randomIndex].volumeInfo.pageCount);
+    $("#book" + (i) + "PreviewLink").attr("href", response.items[randomIndex].volumeInfo.previewLink);
+
+    };// close for loop which populates books
 
 });  // close ajax call to google books
 
-for (var i =0; i < 10; i++) {
-  $("#book" + (i+1)).empty(); 
+for (var i = 1; i <= 10; i++) {
+  $("#book" + (i)).empty(); 
 }// close for loop which clears book results book divs
   
 $("#bookResults").show();
@@ -351,6 +369,7 @@ $("#most-recent-posters").empty();
     // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
+} // end of else - if genre of movie is defined // this also keep undefined genres from being pushed to firebase
 
 } // close bookCall()
 

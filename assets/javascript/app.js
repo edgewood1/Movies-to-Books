@@ -297,13 +297,22 @@ $.ajax({
 }).done(function(response) {
 
   console.log(response);
-  
-    for (var i =0; i < 10; i++) {
+  var randomUsed = [];
+    for (var i =1; i <= 10; i++) {
       var random = Math.floor((Math.random() * response.items.length));
-      console.log(random);
+      console.log("random for books: " + random);
+      
+      while (randomUsed.indexOf(random) != -1) {
+        random = Math.floor((Math.random() * response.items.length));
+      };
+         
+
+      randomUsed.push(random);
+      console.log("randomUsed: " + randomUsed);
+
       var bookDisplayed = $("<img>")
       .attr("data-toggle" , "modal")
-      .attr("data-target" , "#moreInfo" + (i + 1))
+      .attr("data-target" , "#moreInfo" + (i))
       .attr("src", response.items[random].volumeInfo.imageLinks.thumbnail)
       .attr("alt:" ,response.items[random].volumeInfo.title)
       .addClass("img-thumbnail");
@@ -318,23 +327,24 @@ $.ajax({
       .html(yearOnly);
 
       
-      $("#book" + (i+1)).append(bookDisplayed);
-      $("#book" + (i+1)).append(bookDisplayedTitle);
-      $("#book" + (i+1)).append(bookDisplayedYear);
+      $("#book" + (i)).append(bookDisplayed);
+      $("#book" + (i)).append(bookDisplayedTitle);
+      $("#book" + (i)).append(bookDisplayedYear);
 
-      $("#modal" + (i+1) + "Title").html(response.items[random].volumeInfo.title);
-      $("#book" + (i+1) + "Year").html(yearOnly);
-      $("#book" + (i+1) + "Author").html(response.items[random].volumeInfo.authors);
-      $("#book" + (i+1) + "Info").html(response.items[random].volumeInfo.description);
-      $("#book" + (i+1) + "PageCount").html(response.items[random].volumeInfo.pageCount);
-      $("#book" + (i+1) + "PreviewLink").attr("href", response.items[random].volumeInfo.previewLink);
-     
-    }// close for loop which populates books
+      $("#modal" + (i) + "Title").html(response.items[random].volumeInfo.title);
+      $("#book" + (i) + "Year").html(yearOnly);
+      $("#book" + (i) + "Author").html(response.items[random].volumeInfo.authors);
+      $("#book" + (i) + "Info").html(response.items[random].volumeInfo.description);
+      $("#book" + (i) + "PageCount").html(response.items[random].volumeInfo.pageCount);
+      $("#book" + (i) + "PreviewLink").attr("href", response.items[random].volumeInfo.previewLink);
+
+    };// close for loop which populates books
+  
 
 });  // close ajax call to google books
 
-for (var i =0; i < 10; i++) {
-  $("#book" + (i+1)).empty(); 
+for (var i = 1; i <= 10; i++) {
+  $("#book" + (i)).empty(); 
 }// close for loop which clears book results book divs
   
 $("#bookResults").show();

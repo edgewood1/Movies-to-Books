@@ -46,9 +46,10 @@ database.ref().orderByKey().limitToLast(3).
   on("child_added", function(snapshot) {
     //make sure that there's something in the database if you're going to read it 
     var exists = snapshot.exists();
-      if (exists) {
-        $("#most-recent-posters").append('<img class="img-fluid img-thumbnail recentPosters" src="' + snapshot.val().movieChosenPoster + '" alt="Recent Movies">');
-      }
+      
+    if (exists) {
+      $("#most-recent-posters").append('<img class="img-fluid img-thumbnail recentPosters" src="' + snapshot.val().movieChosenPoster + '" alt="Recent Movies">');
+    }
   });
 
 function movieCall() {
@@ -98,7 +99,6 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
-    console.log("genreURL call returns: " + genreURL + response);
 
 // Getting all the genre stuff and creating an array
 	for (i = 0; i < data.genres.length; i++) {
@@ -113,10 +113,17 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
-    console.log("searchURL call returns: " + searchURL + response);
+    console.log("response from search AJAX call: " + response);
+    console.log("data variable: " + data);
+    console.log("data.results[0]: " + data.results[0]);
 
 //CREATE MOVIE OBJECTS
-  $("#movieResults").empty();          
+  $("#movieResults").empty(); 
+  if (data.results.length === 0) {
+    $("#movieChosenDiv").html("We're sorry. Your search did not return any results.<br>Check your spelling or try another movie title.")
+    .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
+  } 
+     
 	for (i = 0; i < data.results.length; i++) {
 		name = data.results[i].title;
 
@@ -157,8 +164,10 @@ function movieCall() {
             "alt":"book cover",
             "id": name
           }).css({"width":"90%"}).on("click", bookCall);
-          var element4 = $("<p>").text(movies[name].title).css("text-align", "center");
-          var element5 = $("<p>").text(movies[name].releaseDate).css("text-align", "center");
+          var element4 = $("<p>").text(movies[name].title)
+          .css("text-align", "center");
+          var element5 = $("<p>").text(movies[name].releaseDate)
+          .css("text-align", "center");
     
           $("#movieResults").append(element2);
           element2.append(element3);
@@ -168,7 +177,7 @@ function movieCall() {
       } //close the if-no-movie-poster display section
 
   } //close the for-i loop, which creates movie object and displays it.
-   
+
 }); //closes ajax movie call 
 
 }); //closes ajax genre call
@@ -194,7 +203,8 @@ function bookCall() {
 	$("#movieChosenDiv").hide();
 	$("#movieChosenDiv").html("<h2>Your movie is: <br><span id='movieChosen'>chosen movie title here</span></h2>");
 	$("#movieChosenDiv").show();
-  $("#movieChosen").html(movies[name].title).css({"display": "block", "color": "white", "font-size": "150%"});
+  $("#movieChosen").html(movies[name].title)
+  .css({"display": "block", "color": "white", "font-size": "150%"});
 
 //EMPTY MOVIE RESULTS IN ORDERT TO DISPLAY BOOKS
    $("#movieResults").empty();
@@ -202,6 +212,10 @@ function bookCall() {
 // TRANSLATE GENRECHOSEN TO BOOKSUBJECT --&& WHAT IF NO GENRE??
 
 switch (genreToSearch) {
+  case undefined:
+    $("#movieChosenDiv").html("We're Sorry. The Movie Database does not have enough information on this movie.<br>Try to search for a similar movie title.")
+    .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
+    break;
   case "Action":
     bookSubject = "action";
       break;
@@ -272,23 +286,52 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
- 
+  
+  if (response.items === undefined) {
+    $("#bookResults").hide();
+  }
+  
+  else {
+
     for (var i =0; i < 10; i++) {
-      $("#book" + (i+1) + "Cover").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
-      $("#book" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
-      $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
+      var bookDisplayed = $("<img>")
+      .attr("data-toggle" , "modal")
+      .attr("data-target" , "#moreInfo" + (i + 1))
+      .attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
+      .attr("alt:" ,response.items[i].volumeInfo.title)
+      .addClass("img-thumbnail");
+      var bookDisplayedTitle = $("<h5>")
+      .html(response.items[i].volumeInfo.title);
+
+       
       //get year out of published date
       var pubDateString = response.items[i].volumeInfo.publishedDate;
       var yearOnly = pubDateString.slice(0,4);
+      var bookDisplayedYear = $("<p>")
+      .html(yearOnly);
 
+      
+      $("#book" + (i+1)).append(bookDisplayed);
+      $("#book" + (i+1)).append(bookDisplayedTitle);
+      $("#book" + (i+1)).append(bookDisplayedYear);
+
+      $("#modal" + (i+1) + "Title").html(response.items[i].volumeInfo.title);
       $("#book" + (i+1) + "Year").html(yearOnly);
       $("#book" + (i+1) + "Author").html(response.items[i].volumeInfo.authors);
       $("#book" + (i+1) + "Info").html(response.items[i].volumeInfo.description);
       $("#book" + (i+1) + "PageCount").html(response.items[i].volumeInfo.pageCount);
       $("#book" + (i+1) + "PreviewLink").attr("href", response.items[i].volumeInfo.previewLink);
+     
     }// close for loop which populates books
+
+  }// end of else- if response returns info then loop through and display
+
 });  // close ajax call to google books
 
+for (var i =0; i < 10; i++) {
+  $("#book" + (i+1)).empty(); 
+}// close for loop which clears book results book divs
+  
 $("#bookResults").show();
 
 $("#most-recent-posters").empty();

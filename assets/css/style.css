@@ -148,6 +148,21 @@ h2 {
 	text-align: left;
 }
 
+.modal-body a {
+	font-family: "Special Elite", serif;
+	background-color: #2290BA;
+	margin: 10px;
+	padding: 5px;
+	color: #FFFD8D;
+	opacity: .75;	
+	border: solid 1px #1a6f8f;
+	border-radius: 5px;
+}
+
+.modal-body a:hover {
+	opacity: 1;
+}
+
 /* Styling for Recent Searches Div */
 #recentSearches {
 	margin: 20px;

@@ -259,7 +259,7 @@ switch (genreToSearch) {
     bookSubject = "horror";
       break;
   case "Music":
-    bookSubject = movieSubject;
+    bookSubject = "music";
       break;
   case "Mystery":
     bookSubject = "mystery";
@@ -283,7 +283,7 @@ switch (genreToSearch) {
     bookSubject = "western";
       break;
   default:
-    bookSubject = genreChosen;
+    bookSubject.toLowerCase() = genreChosen;
 } //end of movie to book switch statements
 
 console.log("book subject for bookCall = " + bookSubject);
@@ -305,7 +305,7 @@ $.ajax({
     console.log("random for books: " + randomIndex);
 
     //if randomIndex has not already been used do this
-    if (indexUsed.indexOf(randomIndex) === -1) {
+    if (indexUsed.indexOf(randomIndex) === -1 && response.items[randomIndex] !== undefined) {
       indexUsed.push(randomIndex);
       console.log("indexUsed:" + indexUsed);
     }// end of if new random index

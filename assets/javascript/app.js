@@ -213,13 +213,18 @@ function bookCall() {
 //EMPTY MOVIE RESULTS IN ORDERT TO DISPLAY BOOKS
    $("#movieResults").empty();
 
-// TRANSLATE GENRECHOSEN TO BOOKSUBJECT --&& WHAT IF NO GENRE??
+//if movie genre is undefined   
 
-switch (genreToSearch) {
-  case undefined:
+if (genreToSearch === undefined) {
     $("#movieChosenDiv").html("We're Sorry. The Movie Database does not have enough information on this movie.<br>Try to search for a similar movie title.")
     .css({"display": "block", "color": "white", "font-size": "120%", "border": "2px #FFFD8D solid"});
-    break;
+    $("#bookResults").hide();
+    }
+//if movie genre is defined
+ else {  
+
+// TRANSLATE GENRECHOSEN TO BOOKSUBJECT 
+switch (genreToSearch) {
   case "Action":
     bookSubject = "action";
       break;
@@ -280,7 +285,7 @@ switch (genreToSearch) {
   default:
     bookSubject = genreChosen;
 } //end of movie to book switch statements
- 
+
 console.log("book subject for bookCall = " + bookSubject);
 var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + bookSubject + "&printType=books&langRestrict=en&maxResults=40&key=AIzaSyDLWrPgW350LzRa-B-z83xg5uKzAjROB1I";
 
@@ -290,11 +295,9 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
-<<<<<<< HEAD
-  console.log(response);
-=======
 
->>>>>>> 94fd518f6d6ee2fee64bfccc603029f984341a3e
+  console.log(response);
+
   
   if (response.items === undefined) {
     $("#bookResults").hide();
@@ -355,7 +358,7 @@ $("#most-recent-posters").empty();
     // This is likely superfluous due to orderByKey option in Firebase that does the same thing.
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
-
+} // end of else - if genre of movie is defined
 } // close bookCall()
 
 onPageLoad();

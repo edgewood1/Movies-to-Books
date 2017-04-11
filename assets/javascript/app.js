@@ -113,9 +113,9 @@ function movieCall() {
 		method: "GET"
 	}).done(function(response) {
 		data = response;
-    console.log("response from search AJAX call: " + response);
-    console.log("data variable: " + data);
-    console.log("data.results[0]: " + data.results[0]);
+    // console.log("response from search AJAX call: " + response);
+    // console.log("data variable: " + data);
+    // console.log("data.results[0]: " + data.results[0]);
 
 //CREATE MOVIE OBJECTS
   $("#movieResults").empty(); 
@@ -286,6 +286,7 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).done(function(response) {
+  console.log(response);
   
   if (response.items === undefined) {
     $("#bookResults").hide();

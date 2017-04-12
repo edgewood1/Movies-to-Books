@@ -233,7 +233,7 @@ switch (genreToSearch) {
     bookSubject = "adventure";
       break;
   case "Animation":
-    bookSubject = "graphic novel||animation";
+    bookSubject = "graphic novel";
       break;
   case "Comedy":
     bookSubject = "humor";
@@ -242,7 +242,7 @@ switch (genreToSearch) {
     bookSubject = "crime";
       break;
   case "Documentary":
-    bookSubject = "history||biography||non-fiction";
+    bookSubject = "history||biography";
       break;
   case "Drama":
     bookSubject = "death";

@@ -109,6 +109,7 @@ function movieCall() {
     }
 
 // CREATE AJAX call for movie data
+
   $.ajax({
     url: searchURL,
     method: "GET"

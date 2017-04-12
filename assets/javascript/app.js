@@ -244,7 +244,7 @@ switch (genreToSearch) {
     bookSubject = "history||biography||non-fiction";
       break;
   case "Drama":
-    bookSubject = "melodrama";
+    bookSubject = "death";
       break;
   case "Family":
     bookSubject = "animals";
